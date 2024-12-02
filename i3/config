@@ -9,7 +9,7 @@
 
 # [ AutoStart ]
     exec_always --no-startup-id dex --autostart --environment i3
-    exec_always --no-startup-id feh --bg-fill ~/.wallpaper/drawing_while_it_rains_by_zefire145_dhjtssa.jpg
+    exec_always --no-startup-id feh --bg-fill ~/.wallpaper/wallpaper-default*
     exec_always --no-startup-id picom
     exec_always --no-startup-id numlockx on
     exec_always --no-startup-id redshift -P -O 4000
