@@ -12,7 +12,7 @@
     exec_always --no-startup-id feh --bg-fill ~/.wallpaper/wallpaper-default*
     exec_always --no-startup-id picom
     exec_always --no-startup-id numlockx on
-    exec_always --no-startup-id redshift -P -O 4000
+    exec_always --no-startup-id redshift -P -O 3500
 
 # [ Window ]
 
@@ -46,6 +46,8 @@
         bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
         bindsym Print exec --no-startup-id flameshot
         bindsym $mod+F5 exec --no-startup-id feh --bg-fill --randomize ~/.wallpaper/*
+	bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
+	bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
 
     #-> Volume
         set $refresh_i3status killall -SIGUSR1 i3status
@@ -173,8 +175,8 @@
     bar {
         workspace_min_width 40 
         #status_command ~/.config/i3/my_i3status    
-        status_command exec i3status
-        #status_command i3blocks
+	#status_command  i3status 
+        status_command i3blocks
         position top
         font pango: Fire Code, Symbols Nerd Font 8
         #separator_symbol "⌇"

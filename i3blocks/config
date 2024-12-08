@@ -1,0 +1,88 @@
+align=center
+markup=pango
+separator=false
+color=#f8f8f2
+separator_block_width=10
+
+[caps_lock]
+command=~/.config/i3blocks/scripts/keyindicator/keyindicator
+KEY=CAPS
+interval=once
+signal=11
+TEXT_ON=󰪛
+TEXT_OFF=󰪛
+
+[num_lock]
+command=~/.config/i3blocks/scripts/keyindicator/keyindicator
+KEY=NUM
+interval=once
+signal=11
+TEXT_ON=󰘲
+TEXT_OFF=󰘲
+HIDE_WHEN_OFF=0
+
+[temperature]
+command=~/.config/i3blocks/scripts/temperature/temperature
+label=<span color="#8be9fd"> </span>
+interval=10
+T_WARN=70
+T_CRIT=90
+#SENSOR_CHIP=""
+
+[memory]
+command=~/.config/i3blocks/scripts/memory/memory
+label=<span color="#8be9fd"> </span>
+interval=1
+
+[swap]
+command=~/.config/i3blocks/scripts/memory/memory
+label=<span color="#8be9fd"> </span>
+instance=swap
+interval=1
+
+[disk_nas]
+command=~/.config/i3blocks/scripts/disk_usage/disk_usage
+label=<span color="#8be9fd"> </span>
+instance=/
+interval=30
+
+[iface]
+command=~/.config/i3blocks/scripts/iface/iface
+label=<span color="#8be9fd">󰌘 </span>
+ADDRESS_FAMILY=inet6?
+color=#50fa7b
+interval=1
+display_wifi_name=1
+
+[light]
+command=bash ~/.config/i3blocks/scripts/light.sh
+label=<span color="#f1fa8c">󰌵 </span>
+interval=1
+
+[volume]
+command=~/.config/i3blocks/scripts/volume/volume
+label=<span color="#8be9fd"> </span>
+interval=repeat
+signal=10
+
+[battery]
+command=~/.config/i3blocks/scripts/battery2/battery2
+interval=1
+
+[weather]
+command= curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
+label=<span color="#8be9fd">󱩹 </span>
+interval=3600
+
+[time]
+command=date '+%T'
+label=<span color="#8be9fd">󰥔 </span>
+interval=1
+
+[date]
+command=date '+%d, %b'
+label=<span color="#8be9fd"> </span>
+interval=1
+
+[space]
+full_text="."
