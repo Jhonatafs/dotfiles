@@ -21,6 +21,18 @@ TEXT_ON=󰘲
 TEXT_OFF=󰘲
 HIDE_WHEN_OFF=0
 
+[cpu_usage]
+command=~/.config/i3blocks/scripts/cpu_usage/cpu_usage
+interval=10
+LABEL= 
+#min_width=CPU: 100.00%
+#T_WARN=50
+#T_CRIT=80
+#DECIMALS=2
+#COLOR_NORMAL=#EBDBB2
+#COLOR_WARN=#FFFC00
+#COLOR_CRIT=#FF0000
+
 [temperature]
 command=~/.config/i3blocks/scripts/temperature/temperature
 label=<span color="#8be9fd"> </span>
@@ -69,11 +81,6 @@ signal=10
 command=~/.config/i3blocks/scripts/battery2/battery2
 interval=1
 
-[weather]
-command= curl -Ss 'https://wttr.in?0&T&Q' | cut -c 16- | head -2 | xargs echo
-label=<span color="#8be9fd">󱩹 </span>
-interval=3600
-
 [time]
 command=date '+%T'
 label=<span color="#8be9fd">󰥔 </span>
@@ -85,4 +92,5 @@ label=<span color="#8be9fd"> </span>
 interval=1
 
 [space]
-full_text="."
+full_text=""
+interval=repeat
