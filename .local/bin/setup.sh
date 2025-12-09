@@ -11,7 +11,7 @@ echo -e "${GREEN}### Iniciando Setup Pós-Instalação do Arch (Sway Minimal) ##
 PKGS=(
     "sway" "swaybg" "swayidle" "swaylock" # Interface
     "waybar" "mako" "fuzzel" # Utilitários Wayland
-    "foot" "neovim" "git" "base-devel" # Ferramentas
+    "foot" "neovim" "git" "base-devel" "openssh" # Ferramentas
     "polkit-gnome" "xdg-desktop-portal-wlr" # Sistema
     "ttf-jetbrains-mono-nerd" "inter-font" # Fontes
     "xdg-user-dirs" # Cria pastas Downloads, etc.
