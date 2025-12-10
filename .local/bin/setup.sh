@@ -22,8 +22,7 @@ PKGS=(
     "libva-intel-driver" # Intel Video (Gen 2-7)
     "intel-media-driver" # Intel Video (Gen 8+)
     "vulkan-intel" # Vulkan Intel
-    "man-db" "man-pages" "wl-clipboard" 
-
+    "man-db" "man-pages" "wl-clipboard" "nodejs" "npm" "unzip"
     #"gammastep"
 )
 
