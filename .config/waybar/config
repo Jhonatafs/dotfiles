@@ -1,0 +1,151 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 0,
+    "spacing": 0, /* Remove espaçamento padrão para controlarmos no CSS */
+
+    /* --- LAYOUT GLOBAL --- */
+    "modules-left": ["custom/arch", "sway/window"],
+    "modules-center": [
+        "cpu",
+        "memory",
+        "temperature",
+        "disk",
+        "battery",
+        "clock", /* O Relógio é o pilar central */
+        "network",
+        "pulseaudio",
+        "bluetooth",
+        "keyboard-state",
+        "backlight",
+        "idle_inhibitor",
+        "custom/updates"
+    ],
+    "modules-right": ["sway/workspaces", "tray"],
+
+    /* --- MÓDULOS ESQUERDA --- */
+    "custom/arch": {
+        "format": "  ",
+        "tooltip": false,
+        "on-click": "fuzzel"
+    },
+
+    "sway/window": {
+        "format": "{title}",
+        "max-length": 40, /* Limita tamanho para não empurrar o centro */
+        "rewrite": {
+            "(.*) - Mozilla Firefox": "Firefox",
+            "(.*) - Neovim": "Neovim",
+            "(.*) - foot": "Terminal"
+        }
+    },
+
+    /* --- MÓDULOS DIREITA --- */
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    },
+
+    /* --- MÓDULOS CENTRAIS (ORDEM SOLICITADA) --- */
+    
+    /* 1. Hardware Básico */
+    "cpu": { "interval": 5, "format": " {usage}%" },
+    "memory": { "interval": 10, "format": " {percentage}%" },
+    "temperature": { "critical-threshold": 80, "format": " {temperatureC}°C" },
+    "disk": { "interval": 30, "format": " {percentage_used}%", "path": "/" },
+
+    /* 2. Energia (Condicional) */
+    "battery": {
+        "states": { "good": 95, "warning": 30, "critical": 15 },
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    /* 3. O CENTRO DO CENTRO (Relógio) */
+    "clock": {
+        "interval": 1,
+        "format": " {:%d/%m   %H:%M:%S}", /* Dia/Mes + H:M:S */
+        "tooltip-format": "<tt><small>{calendar}</small></tt>"
+    },
+
+    /* 4. Conectividade e Audio */
+    "network": {
+        "format-wifi": " {essid}", /* Wifi Nome */
+        "format-ethernet": " {ipaddr}", /* IP Ethernet */
+        "format-linked": " (No IP)",
+        "format-disconnected": "⚠ Off",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "max-length": 20
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-muted": " Muted",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    /* 5. Bluetooth (Encurtado) */
+    "bluetooth": {
+        "format": "", /* Só ícone quando idle */
+        "format-connected": " {device_alias}", /* Ícone + Nome curto */
+        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "max-length": 15
+    },
+
+    /* 6. Locks (Tentativa de fix com interval) */
+    "keyboard-state": {
+        "interval": 1, /* Força verificação a cada 1s */
+        "numlock": true,
+        "capslock": true,
+        "scrolllock": true,
+        "format": "{icon}", /* Apenas ícone para economizar espaço */
+        "format-icons": {
+            "locked": " {name}",
+            "unlocked": "" /* Não mostra nada se destravado */
+        }
+    },
+
+    /* 7. Extras Finais */
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["", ""]
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "", 
+            "deactivated": ""
+        }
+    },
+
+    /* Script Híbrido: Pacman + Flatpak */
+    "custom/updates": {
+        "format": " {}",  /* Ícone de caixa simples + número */
+        "exec": "echo $(( $(checkupdates | wc -l) + $(flatpak remote-ls --updates | wc -l) ))",
+        "interval": 3600,
+        "on-click": "foot -e sh -c 'sudo pacman -Syu && flatpak update'"
+    },
+}
