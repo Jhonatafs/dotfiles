@@ -25,6 +25,8 @@ Focado em minimalismo, performance em hardware antigo (Intel Sandy Bridge+) e re
 * **Terminal:** Foot
 * **Launcher:** Fuzzel
 * **Browser:** Firefox (Flatpak)
+* **Editor:** VSCode (AUR) & Neovim
+* **Extras:** Gammastep (Night Light), Paru (AUR Helper)
 
 ---
 
@@ -64,6 +66,11 @@ chmod +x ~/.local/bin/setup.sh
 # Execute
 ~/.local/bin/setup.sh
 ```
+
+#### 🛠️ Manutenção
+Atualizar Tudo (Pacman + AUR + Flatpak): `up`
+Gerenciar Dotfiles: Use o comando `config` (ex: `config status`, `config push)`.
+
 
 -----
 

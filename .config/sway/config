@@ -19,6 +19,12 @@ set $term foot
 # Your preferred application launcher
 # set $menu wmenu-run
 set $menu fuzzel
+# Your preferred bar
+exec_always "killall waybar; waybar"
+# Gammastep: Blue light filter
+exec_always gammastep -O 1000
+
+input type:keyboard xkb_numlock enabled
 
 ### Output configuration
 #
@@ -74,7 +80,8 @@ input * {
     bindsym $mod+Return exec $term
 
     # Kill focused window
-    bindsym $mod+Shift+q kill
+    #bindsym $mod+Shift+q kill
+    bindsym $mod+q kill
 
     # Start your launcher
     bindsym $mod+d exec $menu
@@ -87,10 +94,13 @@ input * {
     floating_modifier $mod normal
 
     # Reload the configuration file
-    bindsym $mod+Shift+c reload
+    #bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+R reload
 
     # Exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    #bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    bindsym $mod+Shift+Q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
 #
 # Moving around:
 #
@@ -221,18 +231,46 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    position top
+#bar {
+#    position top
+#
+#    # When the status_command prints a new line to stdout, swaybar updates.
+#    # The default just shows the current date and time.
+#    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+#
+#    colors {
+#        statusline #ffffff
+#        background #323232
+#        inactive_workspace #32323200 #32323200 #5c5c5c
+#    }
+#}
 
-    # When the status_command prints a new line to stdout, swaybar updates.
-    # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+# Configuration windows
 
-    colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-}
+# 1. Borda Minimalista (1 pixel de espessura)
+default_border none
+# Para remover todas as bordas e títulos, use: default_border none
 
-include /etc/sway/config.d/*
+# Cores utilizadas (Gruvbox):
+# Borda/Título Ativo (Yellow/Destaque): #d79921
+# Fundo/Borda Inativa (Dark): #1d2021
+# Texto/Borda Inativa (Brown/Muted): #a89984
+# Urgente (Red): #cc241d
+
+# Formato da cor (Sway 7-cores):
+# border_active title_active background_active border_inactive title_inactive background_inactive border_urgent
+
+# Foco Ativo: Bordas e Título em Amarelo Quente
+#client.focused          #d79921 #ebdbb2 #1d2021 #d79921 #ebdbb2 #1d2021 #cc241d
+
+# Foco Inativo: Tons de Marrom Suave (Ainda visível)
+#client.focused_inactive #a89984 #a89984 #1d2021 #a89984 #a89984 #1d2021 #cc241d
+
+# Sem Foco: Borda e Fundo Dark (Mais discreto)
+#client.unfocused        #1d2021 #a89984 #1d2021 #1d2021 #a89984 #1d2021 #cc241d
+
+# Urgente: Alerta em Vermelho
+#client.urgent           #cc241d #ebdbb2 #1d2021 #cc241d #ebdbb2 #1d2021 #cc241d
+
+
+# include /etc/sway/config.d/*

@@ -20,7 +20,7 @@ PKGS=(
     "libva-intel-driver" # Intel Video (Gen 2-7)
     "intel-media-driver" # Intel Video (Gen 8+)
     "vulkan-intel" # Vulkan Intel
-    "man-db" "man-pages"
+    "man-db" "man-pages" "gammastep"
 )
 
 echo -e "${GREEN}-> Atualizando sistema e instalando pacotes nativos...${NC}"
@@ -30,7 +30,23 @@ sudo pacman -Syu --needed --noconfirm "${PKGS[@]}"
 echo -e "${GREEN}-> Criando diretórios padrão (XDG)...${NC}"
 xdg-user-dirs-update
 
-# 3. Configurar Flatpak e Instalar Apps
+# 3. Instalação do Paru (AUR Helper)
+if ! command -v paru &> /dev/null; then
+    echo -e "${BLUE}-> Instalando Paru (AUR)...${NC}"
+    cd /tmp
+    git clone https://aur.archlinux.org/paru-bin.git
+    cd paru-bin
+    makepkg -si --noconfirm
+    cd ~
+else
+    echo -e "${BLUE}-> Paru já instalado.${NC}"
+fi
+
+# 4. VSCode (Via AUR para acesso ao sistema)
+echo -e "${BLUE}-> Instalando VSCode (Binário Oficial)...${NC}"
+paru -S --needed --noconfirm visual-studio-code-bin
+
+# 5. Configurar Flatpak e Instalar Apps
 echo -e "${GREEN}-> Configurando Flatpak...${NC}"
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
@@ -45,7 +61,7 @@ for app in "${FLATPAKS[@]}"; do
     flatpak install -y flathub "$app"
 done
 
-# 4. Correções e Overrides (O Pulo do Gato)
+# 6. Correções e Overrides (O Pulo do Gato)
 echo -e "${GREEN}-> Aplicando correções de permissão (Sandbox)...${NC}"
 
 # Firefox: Permitir acesso à pasta Home (resolve Downloads/Uploads)
