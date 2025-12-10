@@ -1,17 +1,19 @@
 #!/bin/bash
 
-# Cores para o output
+# Cores
 GREEN='\033[0;32m'
-NC='\033[0m' # No Color
+BLUE='\033[0;34m'
+NC='\033[0m'
 
-echo -e "${GREEN}### Iniciando Setup Pós-Instalação do Arch (Sway Minimal) ###${NC}"
+echo -e "${GREEN}### Setup Pós-Instalação: Arch + Sway (Minimal) ###${NC}"
 
 # 1. Lista de Pacotes Nativos (Essenciais + Drivers Genéricos)
-# Nota: Incluímos ambos os drivers Intel (antigo e novo) para compatibilidade.
 PKGS=(
     "sway" "swaybg" "swayidle" "swaylock" # Interface
     "waybar" "mako" "fuzzel" # Utilitários Wayland
+    "grim" "slurp" "wl-clipboard" # Screenshots
     "foot" "neovim" "nano" "htop" "git" "base-devel" "openssh" # Ferramentas
+    "zsh" "zsh-syntax-highlighting" "zsh-autosuggestions" "starship" # Shell
     "polkit-gnome" "xdg-desktop-portal-wlr" # Sistema
     "ttf-jetbrains-mono-nerd" "inter-font" # Fontes
     "xdg-user-dirs" # Cria pastas Downloads, etc.
@@ -20,12 +22,12 @@ PKGS=(
     "libva-intel-driver" # Intel Video (Gen 2-7)
     "intel-media-driver" # Intel Video (Gen 8+)
     "vulkan-intel" # Vulkan Intel
-    "man-db" "man-pages" 
+    "man-db" "man-pages" "wl-clipboard" 
 
     #"gammastep"
 )
 
-echo -e "${GREEN}-> Atualizando sistema e instalando pacotes nativos...${NC}"
+echo -e "${GREEN}-> Atualizando e instalando nativos...${NC}"
 sudo pacman -Syu --needed --noconfirm "${PKGS[@]}"
 
 # 2. Configurar Diretórios de Usuário (Downloads, Documents, etc.)
@@ -44,7 +46,8 @@ else
     echo -e "${BLUE}-> Paru já instalado.${NC}"
 fi
 
-# 4. VSCode (Via AUR para acesso ao sistema)
+# 4. Pacotes AUR
+# Vs Code
 echo -e "${BLUE}-> Instalando VSCode (Binário Oficial)...${NC}"
 paru -S --needed --noconfirm visual-studio-code-bin
 
@@ -54,8 +57,9 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 
 # Lista de Flatpaks
 FLATPAKS=(
-    "org.mozilla.firefox"
     "com.github.tchx84.Flatseal"
+    "org.mozilla.firefox"
+    "org.inkscape.Inkscape"
 )
 
 echo -e "${GREEN}-> Instalando Flatpaks...${NC}"

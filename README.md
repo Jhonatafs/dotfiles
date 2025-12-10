@@ -26,7 +26,7 @@ Focado em minimalismo, performance em hardware antigo (Intel Sandy Bridge+) e re
 * **Launcher:** Fuzzel
 * **Browser:** Firefox (Flatpak)
 * **Editor:** VSCode (AUR) & Neovim
-* **Extras:** Gammastep (Night Light), Paru (AUR Helper)
+* **Extras:** Paru (AUR Helper)
 
 ---
 
@@ -73,6 +73,17 @@ Gerenciar Dotfiles: Use o comando `config` (ex: `config status`, `config push)`.
 
 
 -----
+
+## ⌨️ Atalhos Principais
+
+  * **Menu de Sistema (Desligar/Reiniciar):** Super + 0 (Usa Swaynag)
+  * **Launcher:** Super + D
+  * **Browser:** Super + W
+  * **Terminal:** Super + Enter
+  * **PrintScreen:**
+    * Print: Tela Cheia (Salva em ~/Imagens/Screenshots)
+    * Shift + Print: Selecionar Área (Copia para Clipboard)
+    * Ctrl + Print: Selecionar Área (Salva arquivo)
 
 ## 🛠️ Comandos Úteis
 
