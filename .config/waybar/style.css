@@ -87,10 +87,31 @@ button {
 #bluetooth      { color: @cream; }
 #backlight      { color: @yellow; }
 
-/* Locks */
-#keyboard-state label.locked {
-    color: @red;
-    font-weight: bold;
+/* --- LOCKS --- */
+
+/* Configuração Geral dos 3 módulos */
+#custom-numlock, 
+#custom-capslock, 
+#custom-scrolllock {
+    background: transparent;
+    padding: 0 5px;
+    font-weight: 900;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+/* ESTADO 1: LIGADO (Locked) -> Cinza (Neutro) */
+#custom-numlock.locked, 
+#custom-capslock.locked, 
+#custom-scrolllock.locked {
+    color: #a89984; /* @gray */
+}
+
+/* ESTADO 0: DESLIGADO (Unlocked) -> Vermelho (Alerta) */
+#custom-numlock.unlocked, 
+#custom-capslock.unlocked, 
+#custom-scrolllock.unlocked {
+    color: #cc241d; /* @red */
 }
 
 /* Update Icon */

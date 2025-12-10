@@ -2,7 +2,7 @@
     "layer": "top",
     "position": "top",
     "height": 0,
-    "spacing": 0, /* Remove espaçamento padrão para controlarmos no CSS */
+    "spacing": 0,
 
     /* --- LAYOUT GLOBAL --- */
     "modules-left": ["custom/arch", "sway/window"],
@@ -12,11 +12,15 @@
         "temperature",
         "disk",
         "battery",
-        "clock", /* O Relógio é o pilar central */
+        "custom/numlock",
+        "custom/capslock",
+        /*"custom/scrolllock",*/
+        "keyboard-state#caps",
+        "keyboard-state#scroll",
+        "clock", /* Center */
         "network",
         "pulseaudio",
         "bluetooth",
-        "keyboard-state",
         "backlight",
         "idle_inhibitor",
         "custom/updates"
@@ -44,7 +48,11 @@
     "sway/workspaces": {
         "disable-scroll": true,
         "all-outputs": true,
-        "format": "{name}"
+        "format": "{name}",
+        "persistent-workspaces": {
+            "1": [], "2": [], "3": [], "4": [], "5": [],
+            "6": [], "7": [], "8": [], "9": []
+        }
     },
 
     "tray": {
@@ -52,7 +60,7 @@
         "spacing": 8
     },
 
-    /* --- MÓDULOS CENTRAIS (ORDEM SOLICITADA) --- */
+    /* --- MÓDULOS CENTRAIS --- */
     
     /* 1. Hardware Básico */
     "cpu": { "interval": 5, "format": " {usage}%" },
@@ -78,7 +86,7 @@
 
     /* 4. Conectividade e Audio */
     "network": {
-        "format-wifi": " {essid}", /* Wifi Nome */
+        "format-wifi": " {essid}.{signalStrength}.{frequency}", /* Wifi Nome */
         "format-ethernet": " {ipaddr}", /* IP Ethernet */
         "format-linked": " (No IP)",
         "format-disconnected": "⚠ Off",
@@ -87,7 +95,7 @@
     },
 
     "pulseaudio": {
-        "format": "{icon} {volume}%",
+        "format": "{icon}  {volume}%",
         "format-bluetooth": "{icon} {volume}%",
         "format-muted": " Muted",
         "format-icons": {
@@ -113,18 +121,29 @@
         "max-length": 15
     },
 
-    /* 6. Locks (Tentativa de fix com interval) */
-    "keyboard-state": {
-        "interval": 1, /* Força verificação a cada 1s */
-        "numlock": true,
-        "capslock": true,
-        "scrolllock": true,
-        "format": "{icon}", /* Apenas ícone para economizar espaço */
-        "format-icons": {
-            "locked": " {name}",
-            "unlocked": "" /* Não mostra nada se destravado */
-        }
+    /* 6. Locks  */
+    /* --- LOCKS VIA SCRIPT (1 ou 0) --- */
+
+    "custom/numlock": {
+        "format": "{}",
+        "exec": "val=$(cat /sys/class/leds/input*::numlock/brightness 2>/dev/null | head -n1); if [ \"$val\" == \"1\" ]; then echo '{\"text\": \"\", \"class\": \"locked\"}'; else echo '{\"text\": \"\", \"class\": \"unlocked\"}'; fi",
+        "return-type": "json",
+        "interval": 1
     },
+
+    "custom/capslock": {
+        "format": "{}",
+        "exec": "val=$(cat /sys/class/leds/input*::capslock/brightness 2>/dev/null | head -n1); if [ \"$val\" == \"1\" ]; then echo '{\"text\": \"󰪛\", \"class\": \"locked\"}'; else echo '{\"text\": \"󰪛\", \"class\": \"unlocked\"}'; fi",
+        "return-type": "json",
+        "interval": 1
+    },
+
+    "custom/scrolllock": {
+        "format": "{}",
+        "exec": "val=$(cat /sys/class/leds/input*::scrolllock/brightness 2>/dev/null | head -n1); if [ \"$val\" == \"1\" ]; then echo '{\"text\": \"󰇀\", \"class\": \"locked\"}'; else echo '{\"text\": \"S\", \"class\": \"unlocked\"}'; fi",
+        "return-type": "json",
+        "interval": 1
+    }, 
 
     /* 7. Extras Finais */
     "backlight": {
