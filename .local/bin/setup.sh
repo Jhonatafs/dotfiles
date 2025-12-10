@@ -11,7 +11,7 @@ echo -e "${GREEN}### Iniciando Setup Pós-Instalação do Arch (Sway Minimal) ##
 PKGS=(
     "sway" "swaybg" "swayidle" "swaylock" # Interface
     "waybar" "mako" "fuzzel" # Utilitários Wayland
-    "foot" "neovim" "git" "base-devel" "openssh" # Ferramentas
+    "foot" "neovim" "nano" "htop" "git" "base-devel" "openssh" # Ferramentas
     "polkit-gnome" "xdg-desktop-portal-wlr" # Sistema
     "ttf-jetbrains-mono-nerd" "inter-font" # Fontes
     "xdg-user-dirs" # Cria pastas Downloads, etc.
@@ -20,7 +20,9 @@ PKGS=(
     "libva-intel-driver" # Intel Video (Gen 2-7)
     "intel-media-driver" # Intel Video (Gen 8+)
     "vulkan-intel" # Vulkan Intel
-    "man-db" "man-pages" "gammastep"
+    "man-db" "man-pages" 
+
+    #"gammastep"
 )
 
 echo -e "${GREEN}-> Atualizando sistema e instalando pacotes nativos...${NC}"
