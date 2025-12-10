@@ -1,0 +1,19 @@
+# ~/.config/starship.toml
+
+add_newline = false
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[✗](bold red)"
+
+[directory]
+style = "bold yellow"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[git_branch]
+style = "bold purple"
+symbol = " "
+
+[package]
+disabled = true # Menos poluição visual
