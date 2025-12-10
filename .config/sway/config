@@ -1,276 +1,206 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
+# ==============================================================================
+#  ARCH LINUX + SWAY (ULTIMATE MINIMAL CONFIG)
+#  Foco: Performance (Sandy Bridge), Ergonomia Visual (Warm) e Controle Total.
+# ==============================================================================
 
-### Variables
-#
-# Logo key. Use Mod1 for Alt.
+### 1. VARIÁVEIS E CORES (GRUVBOX WARM) ###
 set $mod Mod4
 set $alt Mod1
-# Home row direction keys, like vim
-set $left h
-set $down j
-set $up k
-set $right l
-# Your preferred terminal emulator
 set $term foot
-# Your preferred application launcher
-# set $menu wmenu-run
 set $menu fuzzel
-# Your preferred bar
-exec_always "killall waybar; waybar"
-# Gammastep: Blue light filter
-exec_always gammastep -O 1000
+set $browser flatpak run org.mozilla.firefox
 
-input type:keyboard xkb_numlock enabled
+# Paleta Gruvbox Material Hard (Warm)
+set $bg      #1d2021
+set $fg      #ebdbb2
+set $red     #cc241d
+set $green   #98971a
+set $yellow  #d79921
+set $blue    #458588
+set $purple  #b16286
+set $aqua    #689d6a
+set $gray    #a89984
+set $darkgray #282828
 
-### Output configuration
-#
-# Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
-#
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
-
-### Idle configuration
-#
-# Example configuration:
-#
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-#          before-sleep 'swaylock -f -c 000000'
-#
-# This will lock your screen after 300 seconds of inactivity, then turn off
-# your displays after another 300 seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
-### Input configuration
-#
-# Example configuration:
-#
-#   input type:touchpad {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-#   input type:keyboard {
-#       xkb_layout "eu"
-#   }
-#
-# You can also configure each device individually.
-# Read `man 5 sway-input` for more information about this section.
-
+### 2. INPUT E HARDWARE (TURBO MODE) ###
+# Configuração de teclado ABNT2 com repetição rápida (para navegar code rápido)
 input * {
-	xkb_layout br
+    xkb_layout br
+    repeat_delay 300
+    repeat_rate 50
 }
 
-### Key bindings
-#
-# Basics:
-#
-    # Start a terminal
-    bindsym $mod+Return exec $term
+# Touchpad
+input type:touchpad {
+    dwt enabled
+    tap enabled
+    natural_scroll enabled
+    middle_emulation enabled
+}
 
-    # Kill focused window
-    #bindsym $mod+Shift+q kill
-    bindsym $mod+q kill
+### 3. OUTPUT E VISUAL (SMART GAPS) ###
+output * bg $bg solid_color
+# output * bg ... fill
 
-    # Start your launcher
-    bindsym $mod+d exec $menu
+# Smart Gaps:
+# - Se houver apenas 1 janela: Sem bordas, sem gaps (Foco total).
+# - Se houver >1 janela: Gaps aparecem para separar o conteúdo.
+gaps inner 5
+gaps outer 5
+smart_gaps on
+smart_borders on
 
-    # Drag floating windows by holding down $mod and left mouse button.
-    # Resize them with right mouse button + $mod.
-    # Despite the name, also works for non-floating windows.
-    # Change normal to inverse to use left mouse button for resizing and right
-    # mouse button for dragging.
-    floating_modifier $mod normal
+# Bordas Minimalistas
+default_border pixel 1
+default_floating_border pixel 1
 
-    # Reload the configuration file
-    #bindsym $mod+Shift+c reload
-    bindsym $mod+Shift+R reload
+# Cores das Janelas (Aplica a paleta definida acima)
+# class                 border  backgr. text    indicator child_border
+client.focused          $yellow $yellow $bg     $yellow   $yellow
+client.focused_inactive $gray   $gray   $bg     $gray     $gray
+client.unfocused        $bg     $bg     $gray   $bg       $bg
+client.urgent           $red    $red    $fg     $red      $red
 
-    # Exit sway (logs you out of your Wayland session)
-    #bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-    bindsym $mod+Shift+Q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+### 4. AUTOSTART (ESSENCIAIS) ###
+# Inicia serviços essenciais em segundo plano
+exec_always "killall waybar; waybar"
+#exec_always "gammastep -O 3500"        # Filtro de Luz Azul (3500K Quente)
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 # Autenticação GUI
+exec mako
 
-#
-# Moving around:
-#
-    # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+# Idle (Bloqueio de tela inteligente)
+exec swayidle -w \
+    timeout 300 'swaylock -f -c 1d2021' \
+    timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
+    before-sleep 'swaylock -f -c 1d2021'
 
-    # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
-#
-# Workspaces:
-#
-    # Switch to workspace
-    bindsym $mod+1 workspace number 1
-    bindsym $mod+2 workspace number 2
-    bindsym $mod+3 workspace number 3
-    bindsym $mod+4 workspace number 4
-    bindsym $mod+5 workspace number 5
-    bindsym $mod+6 workspace number 6
-    bindsym $mod+7 workspace number 7
-    bindsym $mod+8 workspace number 8
-    bindsym $mod+9 workspace number 9
-    bindsym $mod+0 workspace number 10
-    # Move focused container to workspace
-    bindsym $mod+Shift+1 move container to workspace number 1
-    bindsym $mod+Shift+2 move container to workspace number 2
-    bindsym $mod+Shift+3 move container to workspace number 3
-    bindsym $mod+Shift+4 move container to workspace number 4
-    bindsym $mod+Shift+5 move container to workspace number 5
-    bindsym $mod+Shift+6 move container to workspace number 6
-    bindsym $mod+Shift+7 move container to workspace number 7
-    bindsym $mod+Shift+8 move container to workspace number 8
-    bindsym $mod+Shift+9 move container to workspace number 9
-    bindsym $mod+Shift+0 move container to workspace number 10
-    # Note: workspaces can have any name you want, not just numbers.
-    # We just use 1-10 as the default.
-#
-# Layout stuff:
-#
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+### 5. INPUT
+# Habilitar NumLock por padrão na inicialização
+input type:keyboard xkb_numlock enabled
 
-    # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
 
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+### 6. KEYBINDINGS (FLUXO DE TRABALHO) ###
 
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+# --- Básicos ---
+bindsym $mod+Return exec $term
+bindsym $mod+d exec $menu
+bindsym $mod+w exec $browser
+bindsym $mod+q kill
+bindsym $alt+F4 kill
+bindsym $mod+Shift+r reload
 
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+# --- Navegação (VIM Keys: h,j,k,l) ---
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
-    # Move focus to the parent container
-    bindsym $mod+a focus parent
-#
-# Scratchpad:
-#
-    # Sway has a "scratchpad", which is a bag of holding for windows.
-    # You can send windows there and get them back later.
+bindsym $mod+left focus left 
+bindsym $mod+down focus down
+bindsym $mod+up focus up
+bindsym $mod+right focus right 
 
-    # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+# --- Movimentação de Janelas ---
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+k move up
 
-    # Show the next scratchpad window or hide the focused scratchpad window.
-    # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+minus scratchpad show
-#
-# Resizing containers:
-#
+bindsym $mod+Shift+left move left
+bindsym $mod+Shift+down move down
+bindsym $mod+Shift+right move right
+bindsym $mod+Shift+up move up
+
+
+# --- Layouts Avançados ---
+# Splith (horizontal) | Splitv (vertical) | Stacking (Pilha) | Tabbed (Abas) | Toggle split (Padrão)
+bindsym $mod+b splith
+bindsym $mod+v splitv
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+f fullscreen
+
+# --- Floating (Flutuante) ---
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# --- Workspaces (1-10) ---
+bindsym $mod+1 workspace number 1
+bindsym $mod+2 workspace number 2
+bindsym $mod+3 workspace number 3
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 8
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9
+
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 5
+bindsym $mod+Shift+7 move container to workspace number 5
+bindsym $mod+Shift+8 move container to workspace number 5
+bindsym $mod+Shift+9 move container to workspace number 5
+
+# --- Scratchpad (A "Gaveta" Invisível) ---
+# Envia janela para o limbo
+bindsym $mod+Shift+minus move scratchpad
+# Traz a janela de volta (flutuando)
+bindsym $mod+minus scratchpad show
+
+# --- Screenshots (GRIM + SLURP) ---
+# Captura a tela inteira instantaneamente
+bindsym Print exec grim ~/Imagens/Screenshots/$(date +'%Y-%m-%d-%H%M%S.png')
+# Captura uma área da tela selecionada manualmente
+# Selecionar Área -> Copia para Área de Transferência
+bindsym $mod+Shift+s exec slurp | grim -g - - | wl-copy
+# Selecionar Área -> Salva na pasta
+bindsym Control+Print exec slurp | grim -g - ~/Imagens/Screenshots/$(date +'%Y-%m-%d-%H%M%S.png')
+
+### 7. MODOS DE OPERAÇÃO (SAFETY & RESIZE) ###
+
+# Modo Resize (Padrão do Sway, ajustado)
 mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym h resize shrink width 10px
+    bindsym j resize grow height 10px
+    bindsym k resize shrink height 10px
+    bindsym l resize grow width 10px
 
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
+    bindsym left resize shrink width 5px
+    bindsym down resize grow height 5px
+    bindsym up resize shrink height 5px
+    bindsym right resize grow width 5px
 
-    # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
-#
-# Utilities:
-#
-    # Special keys to adjust volume via PulseAudio
-    bindsym --locked XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
-    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
-    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
-    bindsym --locked XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
-    # Special keys to adjust brightness via brightnessctl
-    bindsym --locked XF86MonBrightnessDown exec brightnessctl set 5%-
-    bindsym --locked XF86MonBrightnessUp exec brightnessctl set 5%+
-    # Special key to take a screenshot with grim
-    bindsym Print exec grim
 
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-#bar {
-#    position top
-#
-#    # When the status_command prints a new line to stdout, swaybar updates.
-#    # The default just shows the current date and time.
-#    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
-#
-#    colors {
-#        statusline #ffffff
-#        background #323232
-#        inactive_workspace #32323200 #32323200 #5c5c5c
-#    }
-#}
+# === MENU DE SISTEMA (SWAYNAG) ===
+# Atalho: Super + 0
+# Cria uma barra no topo com botões para Desligar, Reiniciar, Sair ou Bloquear.
 
-# Configuration windows
+bindsym $mod+0 exec swaynag -t warning -m 'Menu de Sistema:' \
+    -B 'Desligar' 'systemctl poweroff' \
+    -B 'Reiniciar' 'systemctl reboot' \
+    -B 'Sair (Logout)' 'swaymsg exit' \
+    -B 'Bloquear' 'swaylock -f -c 1d2021'
 
-# 1. Borda Minimalista (1 pixel de espessura)
-default_border none
-# Para remover todas as bordas e títulos, use: default_border none
+### 8. REGRAS DE JANELA (AUTOMATIZAÇÃO) ###
+# Define comportamento padrão para certos apps
 
-# Cores utilizadas (Gruvbox):
-# Borda/Título Ativo (Yellow/Destaque): #d79921
-# Fundo/Borda Inativa (Dark): #1d2021
-# Texto/Borda Inativa (Brown/Muted): #a89984
-# Urgente (Red): #cc241d
+# Apps que sempre devem flutuar
+for_window [app_id="pavucontrol"] floating enable, resize set 600 400
+for_window [app_id="nm-connection-editor"] floating enable
+for_window [app_id="blueman-manager"] floating enable
+for_window [app_id="galculator"] floating enable
+for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30% 30%
+for_window [title="Picture-in-Picture"] floating enable, sticky enable
 
-# Formato da cor (Sway 7-cores):
-# border_active title_active background_active border_inactive title_inactive background_inactive border_urgent
-
-# Foco Ativo: Bordas e Título em Amarelo Quente
-#client.focused          #d79921 #ebdbb2 #1d2021 #d79921 #ebdbb2 #1d2021 #cc241d
-
-# Foco Inativo: Tons de Marrom Suave (Ainda visível)
-#client.focused_inactive #a89984 #a89984 #1d2021 #a89984 #a89984 #1d2021 #cc241d
-
-# Sem Foco: Borda e Fundo Dark (Mais discreto)
-#client.unfocused        #1d2021 #a89984 #1d2021 #1d2021 #a89984 #1d2021 #cc241d
-
-# Urgente: Alerta em Vermelho
-#client.urgent           #cc241d #ebdbb2 #1d2021 #cc241d #ebdbb2 #1d2021 #cc241d
-
-
-# include /etc/sway/config.d/*
+# Inibir descanso de tela se estiver rodando vídeo em tela cheia (Firefox/MPV)
+for_window [class="^.*"] inhibit_idle fullscreen
+for_window [app_id="^.*"] inhibit_idle fullscreen
