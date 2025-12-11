@@ -1,8 +1,0 @@
-2025-12-10 18:20:16.909 [info] Extension host with pid 22395 started
-2025-12-10 18:20:17.140 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
-2025-12-10 18:20:17.195 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
-2025-12-10 18:20:17.361 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
-2025-12-10 18:20:17.424 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
-2025-12-10 18:20:17.605 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
-2025-12-10 18:20:17.606 [info] Extension host terminating: renderer closed the MessagePort
-2025-12-10 18:20:17.621 [info] Extension host with pid 22395 exiting with code 0

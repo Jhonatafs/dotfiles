@@ -1,8 +1,0 @@
-2025-12-11 15:00:44.835 [info] Started local extension host with pid 8079.
-2025-12-11 15:00:45.323 [info] MCP Registry configured: https://api.mcp.github.com
-2025-12-11 15:00:47.785 [info] Settings Sync: Account status changed from uninitialized to unavailable
-2025-12-11 15:00:49.077 [info] [perf] Render performance baseline is 46ms
-2025-12-11 15:01:25.183 [error] [Extension Host] (node:8079) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
-(Use `exe --trace-deprecation ...` to show where the warning was created)
-2025-12-11 15:01:35.159 [warning] SettingsEditor2: Settings not included in settingsLayout.ts: workbench.secondarySideBar.enableDefaultVisibilityInOldWorkspace, extensions.requestTimeout, github.copilot.chat.agent.terminal.allowList, github.copilot.chat.agent.terminal.denyList, terminal.integrated.developer.devMode, terminal.integrated.developer.ptyHost.latency, terminal.integrated.developer.ptyHost.startupDelay
-2025-12-11 15:03:08.976 [error] [Extension Host] xprop:  unable to open display ''

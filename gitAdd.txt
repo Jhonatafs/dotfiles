@@ -1,5 +1,0 @@
-config add ~/.config/sway/config ~/.config/waybar/ ~/.config/foot/foot.ini \
-~/.config/fuzzel/fuzzel.ini ~/.config/mako/config ~/.zshrc ~/.config/starship.toml \
-~/.bashrc ~/.bash_profile ~/.config/nvim/ ~/.config/code-flags.conf ~/.config/yazi/ \
-~/.config/mimeapps.list ~/.config/gtk-3.0/settings.ini ~/.config/Thunar/uca.xml \
-~/.config/user-dirs.dirs ~/.local/bin/ ~/README.md ~/.gitconfig ~/.makepkg.conf

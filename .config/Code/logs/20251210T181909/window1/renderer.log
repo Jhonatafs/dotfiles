@@ -1,7 +1,0 @@
-2025-12-10 18:19:13.651 [info] ChatSessionStore: Migrating 0 chat sessions from storage service to file system
-2025-12-10 18:19:13.979 [info] Started local extension host with pid 22115.
-2025-12-10 18:19:14.013 [info] Started initializing default profile extensions in extensions installation folder. file:///home/jhonfs/.vscode/extensions
-2025-12-10 18:19:15.132 [info] MCP Registry configured: https://api.mcp.github.com
-2025-12-10 18:19:15.170 [info] Completed initializing default profile extensions in extensions installation folder. file:///home/jhonfs/.vscode/extensions
-2025-12-10 18:19:16.164 [info] Settings Sync: Account status changed from uninitialized to unavailable
-2025-12-10 18:19:18.355 [info] [perf] Render performance baseline is 45ms
