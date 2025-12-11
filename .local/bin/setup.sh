@@ -43,10 +43,18 @@ PKGS=(
 echo -e "${GREEN}-> Atualizando e instalando nativos...${NC}"
 sudo pacman -Syu --needed --noconfirm "${PKGS[@]}"
 
-# 2. Configurar Diretórios de Usuário (Downloads, Documents, etc.)
+# 2 Configurações
+#
+# 2.1 Configurar Diretórios de Usuário (Downloads, Documents, etc.)
 echo -e "${GREEN}-> Criando diretórios padrão (XDG)...${NC}"
 xdg-user-dirs-update
 mkdir ~/Imagens/Screenshots
+mkdir -p ~/Dev/{Work,Personal,Lab}
+#
+# 2.1 Configuração do Git
+git config --global user.name "JhonFs"
+git config --global user.email "jhonatasade@gmail.com"
+git config --global init.defaultBranch main
 
 # 3. Instalação do Paru (AUR Helper)
 if ! command -v paru &> /dev/null; then
