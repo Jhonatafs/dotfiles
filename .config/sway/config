@@ -213,8 +213,8 @@ for_window [app_id="^.*"] inhibit_idle fullscreen
 
 # Trasparencia
 for_window [app_id="code"] opacity set 0.92
-for_window [app_id="org.mozilla.firefox"] opacity set 0.8
-for_window [app_id="com.brave.Browser"] opacity set 0.8
+for_window [app_id="org.mozilla.firefox"] opacity set 0.95
+for_window [app_id="com.brave.Browser"] opacity set 0.95
 # Keybindings
 # Alternar entre transparência para quando estiver assistindo algo
 # bindsym $mod+F9 exec swaymsg [app_id=$] opacity set 0.97
