@@ -30,6 +30,14 @@ config add ~/.config/code-flags.conf
 # 5. Backup do Sistema
 config add ~/.cfg-system/ 2>/dev/null
 
+# 6. Backup Setup VsCode
+# Adiciona as configurações de usuário
+config add ~/.config/Code/User/settings.json
+config add ~/.config/Code/User/keybindings.json
+config add ~/.config/code-flags.conf
+code --list-extensions > ~/.config/Code/User/extensions.txt
+config add ~/.config/Code/User/extensions.txt
+
 # Commit, Pull & Push
 config commit -m "Atualização de todos os arquivos"
 config pull

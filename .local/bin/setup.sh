@@ -109,4 +109,15 @@ flatpak override --user --filesystem=home org.mozilla.firefox
 # Garantir posse da pasta de dados Flatpak (evita perda de senhas/config)
 sudo chown -R $USER:$USER ~/.var
 
+# 7. Instalar Extensões do VSCode
+echo -e "${GREEN}-> Instalando extensões do VSCode...${NC}"
+if [ -f "$HOME/.config/Code/User/extensions.txt" ]; then
+    while read -r extension; do
+        code --install-extension "$extension" --force
+    done < "$HOME/.config/Code/User/extensions.txt"
+else
+    echo "Lista de extensões não encontrada."
+fi
+
+# FIM =======================================================================
 echo -e "${GREEN}### Setup Concluído! Reinicie o sistema ou o Sway. ###${NC}"

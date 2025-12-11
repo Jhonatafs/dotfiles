@@ -1,0 +1,8 @@
+drakenlords.gruvbox-draken-lords
+esbenp.prettier-vscode
+jdinhlife.gruvbox
+jonathanharty.gruvbox-material-icon-theme
+ms-ceintl.vscode-language-pack-pt-br
+naumovs.color-highlight
+oderwat.indent-rainbow
+yandeu.five-server
