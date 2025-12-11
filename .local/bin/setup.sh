@@ -30,7 +30,7 @@ PKGS=(
     # "gammastep"
 
     # 5. Gerenciadores de Arquivos (GUI + Terminal)
-    "thunar" "thunar-archive-plugin" "thunar-volman" "gvfs" "gvfs-mtp" "file-roller"
+    "thunar" "thunar-archive-plugin" "thunar-volman" "tumbler" "gvfs" "gvfs-mtp" "file-roller"
     "yazi" "ffmpegthumbnailer" "unarchiver" "jq" "poppler" "fd" "ripgrep" "fzf" "zoxide"
 
     # 6. Editores de Texto e Monitoramento

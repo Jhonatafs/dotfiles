@@ -41,7 +41,8 @@ input type:touchpad {
 
 ### 3. OUTPUT E VISUAL (SMART GAPS) ###
 # output * bg $bg solid_color
-output * bg ~/Imagens/gruvbox-wallpapers/wallpapers/mix/landscape0.png fill
+output * bg ~/Imagens/wallpapers/*default* fill
+bindsym $mod+F5 exec sh -c 'swaymsg output "*" bg "$(find ~/Imagens/wallpapers/ -type f | shuf -n 1)" fill'
 
 # Smart Gaps:
 # - Se houver apenas 1 janela: Sem bordas, sem gaps (Foco total).
@@ -211,9 +212,9 @@ for_window [class="^.*"] inhibit_idle fullscreen
 for_window [app_id="^.*"] inhibit_idle fullscreen
 
 # Trasparencia
-set $browsers app_id="org.mozilla.firefox"
-for_window [app_id="code"] opacity set 0.97
-for_window [$browsers] opacity set 0.97
+for_window [app_id="code"] opacity set 0.92
+for_window [app_id="org.mozilla.firefox"] opacity set 0.8
+for_window [app_id="com.brave.Browser"] opacity set 0.8
 # Keybindings
 # Alternar entre transparência para quando estiver assistindo algo
 # bindsym $mod+F9 exec swaymsg [app_id=$] opacity set 0.97
