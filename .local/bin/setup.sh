@@ -15,6 +15,7 @@ PKGS=(
     "nvidia" "nvidia-utils" "egl-wayland"
     "polkit-gnome" "xdg-desktop-portal-wlr" "xdg-user-dirs"
     "nodejs" "npm" "unzip" "flatpak"
+    "os-prober" "ntfs-3g"
 
     # 2. Interface Gráfica (Sway) e Bloqueio
     "sway" "swaybg" "swayidle" "swaylock"
@@ -67,6 +68,10 @@ PACOTES=(
     "nwg-look"
     "capitaine-cursors"
     # "bibata-cursor-theme"
+    "distro-grub-themes-arch"
+    "gruvbox-material-icon-theme-git"
+    "xcursor-simp1e-gruvbox-dark"
+    "hfsprogs"
     )
 echo -e "${BLUE}-> Instalando Pacotes AUR...${NC}"
 paru -S --needed --noconfirm "${PACOTES[@]}"
