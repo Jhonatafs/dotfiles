@@ -8,7 +8,6 @@ set $mod Mod4
 set $alt Mod1
 set $term foot
 set $menu fuzzel
-set $browser flatpak run org.mozilla.firefox
 set $tfiles yazi
 set $gfiles thunar
 
@@ -41,8 +40,8 @@ input type:touchpad {
 }
 
 ### 3. OUTPUT E VISUAL (SMART GAPS) ###
-output * bg $bg solid_color
-# output * bg ... fill
+# output * bg $bg solid_color
+output * bg ~/Imagens/gruvbox-wallpapers/wallpapers/mix/landscape0.png fill
 
 # Smart Gaps:
 # - Se houver apenas 1 janela: Sem bordas, sem gaps (Foco total).
@@ -86,7 +85,6 @@ input type:keyboard xkb_numlock enabled
 # --- Básicos ---
 bindsym $mod+Return exec $term
 bindsym $mod+d exec $menu
-bindsym $mod+w exec $browser
 bindsym $mod+F2 exec foot -e $tfiles
 bindsym $mod+F3 exec $gfiles
 bindsym $mod+q kill
@@ -197,7 +195,7 @@ bindsym $mod+0 exec swaynag -t warning -m 'Menu de Sistema:' \
     -B 'Sair (Logout)' 'swaymsg exit' \
     -B 'Bloquear' 'swaylock -f -c 1d2021'
 
-### 8. REGRAS DE JANELA (AUTOMATIZAÇÃO) ###
+### 8. REGRAS DE JANELA ###
 # Define comportamento padrão para certos apps
 
 # Apps que sempre devem flutuar
@@ -211,3 +209,13 @@ for_window [title="Picture-in-Picture"] floating enable, sticky enable
 # Inibir descanso de tela se estiver rodando vídeo em tela cheia (Firefox/MPV)
 for_window [class="^.*"] inhibit_idle fullscreen
 for_window [app_id="^.*"] inhibit_idle fullscreen
+
+# Trasparencia
+set $browsers app_id="org.mozilla.firefox"
+for_window [app_id="code"] opacity set 0.97
+for_window [$browsers] opacity set 0.97
+# Keybindings
+# Alternar entre transparência para quando estiver assistindo algo
+# bindsym $mod+F9 exec swaymsg [app_id=$] opacity set 0.97
+# bindsym $mod+F10 exec swaymsg [app_id=$firefox_app] opacity set 1.0
+

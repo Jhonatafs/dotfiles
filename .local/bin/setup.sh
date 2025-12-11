@@ -64,10 +64,8 @@ fi
 PACOTES=(
     "visual-studio-code-bin"
     "gruvbox-material-gtk-theme-git"
-    # "capitaine-cursors-gruvbox"
     "nwg-look"
     "capitaine-cursors"
-    # "bibata-cursor-theme"
     "distro-grub-themes-arch"
     "gruvbox-material-icon-theme-git"
     "xcursor-simp1e-gruvbox-dark"
@@ -85,6 +83,16 @@ FLATPAKS=(
     "com.github.tchx84.Flatseal"
     "org.mozilla.firefox"
     "org.inkscape.Inkscape"
+    "com.brave.Browser"
+    "org.pulseaudio.pavucontrol"
+    "org.onlyoffice.desktopeditors"
+    "org.qbittorrent.qBittorrent"
+    "org.gnome.Calculator"
+    "com.github.johnfactotum.Foliate"
+    "org.gnome.Evince"
+    "io.github.celluloid_player.Celluloid"
+    "com.interversehq.qView"
+    "org.gimp.GIMP"
 )
 
 echo -e "${GREEN}-> Instalando Flatpaks...${NC}"

@@ -1,5 +1,6 @@
 # ~/.config/starship.toml
 
+scan_timeout = 1000
 add_newline = false
 
 [character]
@@ -16,4 +17,4 @@ style = "bold purple"
 symbol = " "
 
 [package]
-disabled = true # Menos poluição visual
+disabled = true

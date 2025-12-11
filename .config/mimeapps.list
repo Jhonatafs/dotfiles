@@ -1,0 +1,43 @@
+[Default Applications]
+# --- Documentos ---
+# PDF -> Evince (Leitor de Documentos)
+application/pdf=org.gnome.Evince.desktop;
+
+# E-books (EPUB, MOBI) -> Foliate
+application/epub+zip=com.github.johnfactotum.Foliate.desktop;
+application/x-mobipocket-ebook=com.github.johnfactotum.Foliate.desktop;
+
+# --- Imagens ---
+# Imagens Gerais (JPG, PNG, WEBP) -> qView (Minimalista)
+image/jpeg=com.interversehq.qView.desktop;
+image/png=com.interversehq.qView.desktop;
+image/webp=com.interversehq.qView.desktop;
+image/gif=com.interversehq.qView.desktop;
+image/bmp=com.interversehq.qView.desktop;
+image/svg+xml=org.inkscape.Inkscape.desktop;
+
+# --- Multimídia ---
+# Vídeos (MKV, MP4, AVI) -> Celluloid (MPV)
+video/mp4=io.github.celluloid_player.Celluloid.desktop;
+video/x-matroska=io.github.celluloid_player.Celluloid.desktop;
+video/x-msvideo=io.github.celluloid_player.Celluloid.desktop;
+video/quicktime=io.github.celluloid_player.Celluloid.desktop;
+video/webm=io.github.celluloid_player.Celluloid.desktop;
+
+# Áudio -> Celluloid (ou outro player se preferir)
+audio/mpeg=io.github.celluloid_player.Celluloid.desktop;
+audio/ogg=io.github.celluloid_player.Celluloid.desktop;
+audio/flac=io.github.celluloid_player.Celluloid.desktop;
+
+# --- Web ---
+# Links -> Firefox
+text/html=org.mozilla.firefox.desktop;
+x-scheme-handler/http=org.mozilla.firefox.desktop;
+x-scheme-handler/https=org.mozilla.firefox.desktop;
+x-scheme-handler/about=org.mozilla.firefox.desktop;
+x-scheme-handler/unknown=org.mozilla.firefox.desktop;
+
+[Added Associations]
+# Garante que o GIMP apareça na lista de "Abrir Com" para imagens
+image/jpeg=org.gimp.GIMP.desktop;
+image/png=org.gimp.GIMP.desktop;

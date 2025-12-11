@@ -1,0 +1,29 @@
+2025-12-11 15:00:47.603 [info] Extension host with pid 8079 started
+2025-12-11 15:00:47.880 [info] ExtensionService#_doActivateExtension vscode.github-authentication, startup: false, activationEvent: 'onAuthenticationRequest:github'
+2025-12-11 15:00:47.995 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2025-12-11 15:00:48.214 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2025-12-11 15:00:48.231 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2025-12-11 15:00:48.395 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2025-12-11 15:00:48.723 [info] Eager extensions activated
+2025-12-11 15:00:48.814 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2025-12-11 15:00:48.818 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2025-12-11 15:01:25.056 [info] ExtensionService#_doActivateExtension glassjs.glassjs, startup: false, activationEvent: 'onStartupFinished'
+2025-12-11 15:03:08.857 [info] ExtensionService#_doActivateExtension s-nlf-fh.glassit, startup: false, activationEvent: '*'
+2025-12-11 15:03:08.979 [error] Activating extension s-nlf-fh.glassit failed due to an error:
+2025-12-11 15:03:08.979 [error] Error: Command failed: xprop -root | grep '_NET_CLIENT_LIST(WINDOW)'
+xprop:  unable to open display ''
+
+	at genericNodeError (node:internal/errors:983:15)
+	at wrappedFn (node:internal/errors:537:14)
+	at checkExecSyncError (node:child_process:949:11)
+	at Object.execSync (node:child_process:1021:15)
+	at Object.execSync (node:electron/js2c/node_init:2:17346)
+	at activate (/home/jhonfs/.vscode/extensions/s-nlf-fh.glassit-0.2.6/extension.js:59:43)
+	at xA.kb (file:///opt/visual-studio-code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:118:15356)
+	at xA.jb (file:///opt/visual-studio-code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:118:15101)
+	at file:///opt/visual-studio-code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:118:13259
+	at async Uy.n (file:///opt/visual-studio-code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:114:13382)
+	at async Uy.m (file:///opt/visual-studio-code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:114:13345)
+	at async Uy.l (file:///opt/visual-studio-code/resources/app/out/vs/workbench/api/node/extensionHostProcess.js:114:12801)
+2025-12-11 15:07:03.493 [info] Extension host terminating: renderer closed the MessagePort
+2025-12-11 15:07:03.540 [info] Extension host with pid 8079 exiting with code 0
