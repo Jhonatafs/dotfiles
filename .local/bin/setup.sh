@@ -13,7 +13,7 @@ PKGS=(
     "base-devel" "git" "openssh" "man-db" "man-pages"
     "mesa" "libva-intel-driver" "intel-media-driver" "vulkan-intel"
     "nvidia" "nvidia-utils" "egl-wayland"
-    "polkit-gnome" "xdg-desktop-portal-wlr" "xdg-user-dirs"
+    "polkit-gnome" "xdg-desktop-portal-wlr" "xdg-user-dirs" "xdg-desktop-portal-gtk"
     "nodejs" "npm" "unzip" "flatpak"
     "os-prober" "ntfs-3g"
 
