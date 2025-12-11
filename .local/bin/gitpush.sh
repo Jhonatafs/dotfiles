@@ -26,6 +26,8 @@ config add ~/.config/Thunar/uca.xml
 config add ~/.config/mimeapps.list
 config add ~/.config/user-dirs.dirs
 config add ~/.config/code-flags.conf
+config add ~/.config/xdg-desktop-portal/sway-portals.conf
+config add ~/.config/mimeapps.list
 
 # 5. Backup do Sistema
 config add ~/.cfg-system/ 2>/dev/null
