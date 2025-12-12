@@ -1,0 +1,47 @@
+# Ignora tudo. Se não estiver listado abaixo com '!', não entra.
+/*
+
+# RAIZ
+!/.gitignore
+!/.gitconfig
+!/.bashrc
+!/.bash_profile
+!/.zshrc
+!/.makepkg.conf
+!/README.md
+
+# .cfg-system (Arquivos da raiz do sistema)
+!/.cfg-system/
+
+# .Config
+## Interface & Window Manager
+!/.config/sway/
+!/.config/waybar/
+!/.config/mako/
+!/.config/fuzzel/
+!/.config/xdg-desktop-portal/
+!/.config/gtk-3.0/
+!/.config/xsettingsd/
+## Terminal & Shell
+!/.config/foot/
+!/.config/starship.toml
+## Editores & Ferramentas
+!/.config/nvim/
+!/.config/yazi/
+!/.config/Thunar/
+## Arquivos de Sistema/Defaults
+!/.config/mimeapps.list
+!/.config/user-dirs.dirs
+!/.config/code-flags.conf
+## VSCode (Apenas configs, sem cache/histórico)
+!/.config/Code/User/settings.json
+!/.config/Code/User/keybindings.json
+!/.config/Code/User/extensions.txt
+
+# .local
+!/.local/bin/setup.sh
+!/.local/bin/up
+
+# .ssh
+!/.ssh/*.pub
+!/.ssh/config'

@@ -34,3 +34,7 @@ export PATH="$HOME/.local/bin:$PATH"
 bindkey "^[[3~" delete-char
 bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
+
+# 8. Força Firefox e apps GTK a usarem o Portal de Arquivos nativo
+export GTK_USE_PORTAL=1
+export MOZ_ENABLE_WAYLAND=1
