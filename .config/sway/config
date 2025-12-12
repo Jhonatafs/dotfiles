@@ -23,6 +23,9 @@ set $aqua    #689d6a
 set $gray    #a89984
 set $darkgray #282828
 
+# Garantir que os portais saibam que é um Wayland/Sway
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 ### 2. INPUT E HARDWARE (TURBO MODE) ###
 # Configuração de teclado ABNT2 com repetição rápida (para navegar code rápido)
 input * {
