@@ -3,18 +3,38 @@
 scan_timeout = 1000
 add_newline = false
 
+# Layout
+# Linha 1: Diretório > Git > Versões de pacotes
+# Linha 2: Quebra de linha > Usuário > Seta de comando
+format = """
+$directory$git_branch$git_status$package
+$username$character"""
+
+# Configs
 [character]
 success_symbol = "[➜](bold green)"
 error_symbol = "[✗](bold red)"
+vimcmd_symbol = "[N](bold green)"
 
 [directory]
 style = "bold yellow"
 truncation_length = 3
 truncation_symbol = "…/"
+read_only = " 󰌾"
+
+[username]
+style_user = "bold blue"
+style_root = "bold red"
+show_always = true
+format = "[$user]($style) "
 
 [git_branch]
 style = "bold purple"
 symbol = " "
+
+[git_status]
+style = "bold red"
+format = "[$all_status$ahead_behind]($style) "
 
 [package]
 disabled = true

@@ -5,7 +5,7 @@
 	<name>Terminal</name>
 	<submenu></submenu>
 	<unique-id>1765410036763926-1</unique-id>
-	<command>foot -d %f</command>
+	<command>foot -D %f</command>
 	<description>Abre o Foot no diretório atual</description>
 	<range></range>
 	<patterns>*</patterns>

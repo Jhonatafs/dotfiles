@@ -15,7 +15,7 @@ PKGS=(
     "nvidia" "nvidia-utils" "egl-wayland"
     "polkit-gnome" "xdg-desktop-portal-wlr" "xdg-user-dirs" "xdg-desktop-portal-gtk"
     "nodejs" "npm" "unzip" "flatpak"
-    "os-prober" "ntfs-3g"
+    "os-prober" "ntfs-3g" "fastfetch"
 
     # 2. Interface Gráfica (Sway) e Bloqueio
     "sway" "swaybg" "swayidle" "swaylock"
