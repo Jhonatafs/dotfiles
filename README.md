@@ -70,6 +70,7 @@ chmod +x ~/.local/bin/setup.sh
 #### 🛠️ Manutenção
 Atualizar Tudo (Pacman + AUR + Flatpak): `up`
 Gerenciar Dotfiles: Use o comando `config` (ex: `config status`, `config push)`.
+_Para fazer o add, commit, pull e push de tudo pode usar `bash ~/.local/bin/gitpush.sh`_
 
 
 -----
