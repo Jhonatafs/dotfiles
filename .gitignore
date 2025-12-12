@@ -8,6 +8,7 @@
 !/.bash_profile
 !/.zshrc
 !/.makepkg.conf
+!/.gtkrc-2.0
 !/README.md
 
 # .cfg-system (Arquivos da raiz do sistema)
@@ -15,20 +16,24 @@
 
 # .Config
 ## Interface & Window Manager
-!/.config/sway/
-!/.config/waybar/
-!/.config/mako/
-!/.config/fuzzel/
-!/.config/xdg-desktop-portal/
-!/.config/gtk-3.0/
-!/.config/xsettingsd/
+!/.config/sway/*
+!/.config/waybar/*
+!/.config/mako/*
+!/.config/fuzzel/*
+!/.config/xdg-desktop-portal/*
+!/.config/gtk-3.0/*
+!/.config/xsettingsd/*
+!/.config/gtk-4.0/*
+!/.config/nwg-look/*
+!/.config/gammastep/*
+!/.config/htop/*
 ## Terminal & Shell
-!/.config/foot/
+!/.config/foot/*
 !/.config/starship.toml
 ## Editores & Ferramentas
-!/.config/nvim/
-!/.config/yazi/
-!/.config/Thunar/
+!/.config/nvim/*
+!/.config/yazi/*
+!/.config/Thunar/*
 ## Arquivos de Sistema/Defaults
 !/.config/mimeapps.list
 !/.config/user-dirs.dirs
