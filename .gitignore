@@ -39,6 +39,7 @@
 !/.config/user-dirs.dirs
 !/.config/code-flags.conf
 !/.config/assets/
+!/.config/assets/**
 ## Liberar
 !/.config/Code/
 /.config/Code/*
