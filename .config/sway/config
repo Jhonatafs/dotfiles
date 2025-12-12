@@ -27,10 +27,13 @@ set $darkgray #282828
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 # Define o tema para o File Picker não crashar por falta de config
 set $gnome-schema org.gnome.desktop.interface
+seat seat0 xcursor_theme Simp1e-Gruvbox-Dark 24
 exec_always {
     gsettings set $gnome-schema gtk-theme 'Gruvbox-Material-Dark'
     gsettings set $gnome-schema icon-theme 'Gruvbox-Material-Dark'
     gsettings set $gnome-schema color-scheme 'prefer-dark'
+    gsettings set $gnome-schema cursor-theme 'Simp1e-Gruvbox-Dark'
+    gsettings set $gnome-schema cursor-size 24
 }
 
 ### INPUT E HARDWARE ###
@@ -97,7 +100,7 @@ input type:keyboard xkb_numlock enabled
 bindsym $mod+Return exec $term
 bindsym $mod+d exec $menu
 bindsym $mod+F2 exec foot -e $tfiles
-bindsym $mod+F3 exec $gfiles
+bindsym $mod+t exec $gfiles
 bindsym $mod+q kill
 bindsym $alt+F4 kill
 bindsym $mod+Shift+r reload
@@ -133,7 +136,7 @@ bindsym $alt+up splitv
 bindsym $alt+down splitv
 # Stacking (Pilha) | Tabbed (Abas) | Toggle split (Padrão)
 bindsym $mod+s layout stacking
-bindsym $mod+t layout tabbed
+bindsym $mod+Tab layout tabbed
 bindsym $mod+e layout toggle split
 bindsym $mod+f fullscreen
 
@@ -201,17 +204,32 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-# === MENU DE SISTEMA (SWAYNAG) ===
+# --- MENU DE SISTEMA (SWAYNAG) ---
 # Atalho: Super + 0
 # Cria uma barra no topo com botões para Desligar, Reiniciar, Sair ou Bloquear.
 
-bindsym $mod+0 exec swaynag -t warning -m 'Menu de Sistema:' \
+bindsym $mod+Shift+q exec swaynag -t warning -m 'Menu de Sistema:' \
     -B 'Desligar' 'systemctl poweroff' \
     -B 'Reiniciar' 'systemctl reboot' \
     -B 'Sair (Logout)' 'swaymsg exit' \
     -B 'Bloquear' 'swaylock -f -c 1d2021'
 
-### REGRAS DE JANELA ###
+# --- Multimédia e Brilho ---
+# Requer: pamixer (áudio) e brightnessctl (brilho)
+bindsym XF86AudioRaiseVolume exec pamixer -i 5
+bindsym XF86AudioLowerVolume exec pamixer -d 5
+bindsym XF86AudioMute exec pamixer -t
+bindsym XF86AudioMicMute exec pamixer --default-source -t
+
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+# Controlo de Player (Spotify/YouTube) - Requer playerctl
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# --- REGRAS DE JANELA ---#
 # Define comportamento padrão para certos apps
 
 # Apps que sempre devem flutuar
@@ -229,7 +247,6 @@ for_window [app_id="^.*"] inhibit_idle fullscreen
 # Trasparencia
 for_window [app_id="code"] opacity set 0.92
 for_window [app_id="org.mozilla.firefox"] opacity set 0.95
-for_window [app_id="com.brave.Browser"] opacity set 0.95
 # Keybindings
 # Alternar entre transparência para quando estiver assistindo algo
 bindsym $mod+F9 exec 'swaymsg [app_id="org.mozilla.firefox"] opacity set 0.95'
