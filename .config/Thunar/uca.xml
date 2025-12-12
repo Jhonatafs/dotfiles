@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>foot</icon>
+	<name>Terminal</name>
+	<submenu></submenu>
+	<unique-id>1765410036763926-1</unique-id>
+	<command>foot -D %f</command>
+	<description>Abre o Foot no diretório atual</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon></icon>
+	<name></name>
+	<submenu></submenu>
+	<unique-id>1765412474405914-1</unique-id>
+	<command></command>
+	<description></description>
+	<range>*</range>
+	<patterns>*</patterns>
+</action>
+</actions>

@@ -1,0 +1,17 @@
+[manager]
+# Usaremos as cores 16-color do seu terminal (foot)
+# Se o Yazi usar as cores nomeadas, o Gruvbox funcionará
+# Caso contrário, defina as cores hex: #1d2021, #d79921, etc.
+
+# Exemplo (adaptado para usar as cores do terminal):
+# Fundo dos painéis
+# background_color = "bg0"
+
+# Cor dos arquivos normais
+# foreground_color = "fg0"
+
+# Cor do arquivo selecionado
+# hover_style = "bg:yellow" 
+
+# Cor da barra de status
+# status_style = "bg:gray fg:black"

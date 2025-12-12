@@ -1,0 +1,133 @@
+/* --- PALETA WARM (Anti-Blue Light) --- */
+@define-color cream   #ebdbb2;  /* Cor principal de leitura */
+@define-color yellow  #d79921;  /* Destaque principal */
+@define-color orange  #d65d0e;  /* Alertas suaves */
+@define-color red     #cc241d;  /* Erro/Crítico (tom terroso) */
+@define-color brown   #a89984;  /* Ícones inativos/secundários */
+@define-color green   #98971a;  /* Status OK (tom oliva) */
+@define-color dark    #1d2021;  /* Fundo da barra */
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12px;
+    min-height: 0;
+}
+
+/* Barra: Fundo escuro quase transparente para o texto não sumir no wallpaper */
+window#waybar {
+    background-color: @dark; 
+    color: @cream;
+    border-bottom: 1px solid @brown; /* Linha muito sutil embaixo */
+}
+
+/* Reset Geral */
+button {
+    box-shadow: none;
+    text-shadow: none;
+    padding: 0;
+    border-radius: 0;
+}
+
+/* --- MÓDULOS (Sem Backgrounds) --- */
+
+#custom-arch, #window, #workspaces, #tray,
+#cpu, #memory, #temperature, #disk, #battery,
+#clock, #network, #pulseaudio, #bluetooth,
+#keyboard-state, #backlight, #idle_inhibitor, #custom-updates {
+    background-color: transparent; /* AQUI ESTÁ A MÁGICA */
+    padding: 0 10px;
+    margin: 0;
+}
+
+/* --- CORES DO TEXTO (Tons Quentes) --- */
+
+/* Esquerda */
+#custom-arch {
+    color: @yellow;     /* Logo em amarelo */
+    font-size: 18px;
+    padding-left: 15px;
+}
+
+#window {
+    color: @cream;
+    font-weight: bold;
+}
+
+/* Workspaces */
+#workspaces button {
+    color: @brown;      /* Inativos ficam "apagados" */
+}
+#workspaces button.focused {
+    color: @orange;     /* Ativo brilha em laranja */
+    box-shadow: inset 0 -2px @orange; /* Linha fina embaixo do ativo */
+}
+
+/* Centro (Hardware) */
+#cpu            { color: @cream; }
+#memory         { color: @cream; }
+#temperature    { color: @orange; } /* Temp alta chama atenção */
+#disk           { color: @brown; }
+#battery        { color: @green; }
+
+/* Centro (Relógio - Destaque) */
+#clock {
+    color: @yellow;
+    font-weight: bold;
+}
+
+/* Centro (Rede/Audio) */
+#network        { color: @cream; }
+#network.disconnected { color: @red; }
+
+#pulseaudio     { color: @cream; }
+#pulseaudio.muted { color: @brown; }
+
+#bluetooth      { color: @cream; }
+#backlight      { color: @yellow; }
+
+/* --- LOCKS --- */
+
+/* Configuração Geral dos 3 módulos */
+#custom-numlock, 
+#custom-capslock, 
+#custom-scrolllock {
+    background: transparent;
+    padding: 0 5px;
+    font-weight: 900;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+/* ESTADO 1: LIGADO (Locked) -> Cinza (Neutro) */
+#custom-numlock.locked, 
+#custom-capslock.locked, 
+#custom-scrolllock.locked {
+    color: #a89984; /* @gray */
+}
+
+/* ESTADO 0: DESLIGADO (Unlocked) -> Vermelho (Alerta) */
+#custom-numlock.unlocked, 
+#custom-capslock.unlocked, 
+#custom-scrolllock.unlocked {
+    color: #cc241d; /* @red */
+}
+
+/* Update Icon */
+#custom-updates {
+    color: @orange; /* Destaca que tem coisa pra fazer */
+}
+
+/* Idle Inhibitor */
+#idle_inhibitor.activated { color: @red; }
+#idle_inhibitor.deactivated { color: @brown; }
+
+/* Tray */
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: transparent;
+}

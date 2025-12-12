@@ -1,0 +1,36 @@
+# === YAZI THEME (Gruvbox Dark Warm) ===
+# Cores Hex: Dark (#1d2021), Cream (#ebdbb2), Yellow (#d79921), Red (#cc241d)
+
+# Mapeamento de cor base
+[colors]
+# A cor de fundo principal virá do terminal, mas definimos uma cor fallback
+bg = "#1d2021" 
+
+# --- Panes (Painéis de Navegação) ---
+[mgr]
+# Cor do painel que está focado
+active = { fg = "#ebdbb2", bg = "#1d2021" } 
+# Cor do painel que NÃO está focado
+inactive = { fg = "#a89984", bg = "#1d2021" } 
+# Cor da linha do arquivo/diretório selecionado
+hovered = { bg = "#282828", fg = "#ebdbb2", underline = true } 
+# Cor do arquivo/diretório selecionado
+selected = { fg = "#d79921", bg = "#1d2021", underline = true, bold = true } 
+# Cor de arquivos ocultos
+hidden = { fg = "#a89984", dim = true }
+
+# --- Barra de Status (Inferior) ---
+[status]
+# Fundo escuro (base) e texto claro (cream)
+main_style = { fg = "#ebdbb2", bg = "#1d2021" }
+# Cor de diretório Git sujo
+git_dirty = { fg = "#d79921", bold = true }
+# Cor de branch Git
+git_branch = { fg = "#98971a" }
+
+# --- Previewer (Painel de Pré-visualização) ---
+[preview]
+# Fundo escuro
+background = "#1d2021"
+# Cores de sintaxe de arquivo de código
+syntax_theme = "gruvbox-dark"

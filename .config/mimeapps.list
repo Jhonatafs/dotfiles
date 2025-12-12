@@ -1,0 +1,31 @@
+[Default Applications]
+application/pdf=org.gnome.Evince.desktop;
+application/epub+zip=com.github.johnfactotum.Foliate.desktop;
+application/x-mobipocket-ebook=com.github.johnfactotum.Foliate.desktop;
+image/jpeg=com.interversehq.qView.desktop;
+image/png=com.interversehq.qView.desktop;
+image/webp=com.interversehq.qView.desktop;
+image/gif=com.interversehq.qView.desktop;
+image/bmp=com.interversehq.qView.desktop;
+image/svg+xml=org.inkscape.Inkscape.desktop;
+video/mp4=io.github.celluloid_player.Celluloid.desktop;
+video/x-matroska=io.github.celluloid_player.Celluloid.desktop;
+video/x-msvideo=io.github.celluloid_player.Celluloid.desktop;
+video/quicktime=io.github.celluloid_player.Celluloid.desktop;
+video/webm=io.github.celluloid_player.Celluloid.desktop;
+audio/mpeg=io.github.celluloid_player.Celluloid.desktop;
+audio/ogg=io.github.celluloid_player.Celluloid.desktop;
+audio/flac=io.github.celluloid_player.Celluloid.desktop;
+text/html=org.mozilla.firefox.desktop;
+x-scheme-handler/http=org.mozilla.firefox.desktop;
+x-scheme-handler/https=org.mozilla.firefox.desktop;
+x-scheme-handler/about=org.mozilla.firefox.desktop;
+x-scheme-handler/unknown=org.mozilla.firefox.desktop;
+inode/directory=thunar.desktop;
+application/vnd.ms-publisher=code.desktop
+
+[Added Associations]
+image/jpeg=org.gimp.GIMP.desktop;
+image/png=org.gimp.GIMP.desktop;
+application/vnd.ms-publisher=code.desktop;com.github.johnfactotum.Foliate.desktop;nvim.desktop;
+text/plain=code.desktop;
