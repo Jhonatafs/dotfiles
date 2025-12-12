@@ -15,38 +15,51 @@
 !/.cfg-system/
 
 # .Config
-## Interface & Window Manager
-!/.config/sway/*
-!/.config/waybar/*
-!/.config/mako/*
-!/.config/fuzzel/*
-!/.config/xdg-desktop-portal/*
-!/.config/gtk-3.0/*
-!/.config/xsettingsd/*
-!/.config/gtk-4.0/*
-!/.config/nwg-look/*
-!/.config/gammastep/*
-!/.config/htop/*
-## Terminal & Shell
-!/.config/foot/*
+## Liberação
+!/.config/
+/.config/*
+## Exeções
+!/.config/sway/
+!/.config/waybar/
+!/.config/mako/
+!/.config/fuzzel/
+!/.config/xdg-desktop-portal/
+!/.config/gtk-3.0/
+!/.config/xsettingsd/
+!/.config/gtk-4.0/
+!/.config/nwg-look/
+!/.config/gammastep/
+!/.config/htop/
+!/.config/foot/
 !/.config/starship.toml
-## Editores & Ferramentas
-!/.config/nvim/*
-!/.config/yazi/*
-!/.config/Thunar/*
-## Arquivos de Sistema/Defaults
+!/.config/nvim/
+!/.config/yazi/
+!/.config/Thunar/
 !/.config/mimeapps.list
 !/.config/user-dirs.dirs
 !/.config/code-flags.conf
-## VSCode (Apenas configs, sem cache/histórico)
+## Liberar
+!/.config/Code/
+/.config/Code/*
+!/.config/Code/User/
+/.config/Code/User/*
+## Exeções
 !/.config/Code/User/settings.json
 !/.config/Code/User/keybindings.json
 !/.config/Code/User/extensions.txt
 
 # .local
+## Liberar
+!/.local/
+/.local/*
+## Exeções
 !/.local/bin/setup.sh
 !/.local/bin/up
 
 # .ssh
+## Liberar
+!/.ssh/
+/.ssh/*
+## Exeções
 !/.ssh/*.pub
-!/.ssh/config'
+!/.ssh/config
