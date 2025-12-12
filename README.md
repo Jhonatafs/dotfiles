@@ -8,7 +8,7 @@ _Meus dotfiles pessoais gerenciados via **Git Bare Repository**._
 >
 > FP - Flatpak
 
-## Stack
+---
 
 - **OS:** Arch Linux
 - **WM:** Sway (Wayland)
