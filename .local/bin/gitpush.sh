@@ -43,4 +43,4 @@ config add ~/.config/Code/User/extensions.txt
 # Commit, Pull & Push
 config commit -m "Atualização de todos os arquivos"
 config pull
-config push
+config push origin main
