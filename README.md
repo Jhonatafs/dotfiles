@@ -2,10 +2,7 @@
 
 _Meus dotfiles pessoais gerenciados via **Git Bare Repository**._
 
-> ![Área de Trabalho](/.config/assets/clean.png)
-> ![Grid](/.config/assets/busy.png)
-> ![Info](/.config/assets/info.png)
-> ![Menu](/.config/assets/menu.png)
+> ![Info](/.config/assets/arch+sway.png)
 
 > **Abreviações:**
 >
