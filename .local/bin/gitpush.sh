@@ -37,7 +37,7 @@ config add ~/.cfg-system/ 2>/dev/null
 config add ~/.config/Code/User/settings.json
 config add ~/.config/Code/User/keybindings.json
 config add ~/.config/code-flags.conf
-code --list-extensions > ~/.config/Code/User/extensions.txt
+env -i sh -c 'code --list-extensions > ~/.config/Code/User/extensions.txt'
 config add ~/.config/Code/User/extensions.txt
 
 # Commit, Pull & Push
