@@ -1,0 +1,65 @@
+# =================================================================
+#   Configuração das Janelas
+# =================================================================
+
+# Gestor de Arquivos Compactados (File Roller)
+for_window [app_id="org.gnome.FileRoller"] floating enable, move position center
+
+# Configuração de Tema (nwg-look)
+for_window [app_id="nwg-look"] floating enable, resize set 800 600
+
+# Visualizadores de Vídeo/Webcam (qv4l2 / qvidcap)
+for_window [app_id="qv4l2"] floating enable
+for_window [app_id="qvidcap"] floating enable
+
+# Sobre o XFCE
+for_window [app_id="xfce4-about"] floating enable
+
+# VSCode (Evitar que janelas de "Abrir Ficheiro" ocupem o ecrã todo)
+for_window [app_id="code" title="Abrir.*"] floating enable, resize set 900 600
+for_window [app_id="code" title="Guardar.*"] floating enable, resize set 900 600
+
+# FIREFOX / BRAVE (Picture-in-Picture)
+for_window [title="^Picture-in-Picture$"] floating enable, sticky enable, resize set 400 225, move position 1500 830
+
+# ==============================================================================
+#  THUNAR - CONFIGURAÇÃO BLINDADA (Wayland + X11)
+# ==============================================================================
+
+# 1. Pega janelas pelo TIPO (Mais confiável que o nome)
+# Se a janela disser ao sistema "Sou um diálogo", ela flutua.
+for_window [window_role="pop-up"] floating enable, move position center
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+
+# 2. Pega janelas pelo TÍTULO (Usando .* para ignorar texto extra)
+# O (?i) faz ignorar maiúsculas/minúsculas.
+# O .* antes e depois garante que pegue frases inteiras.
+
+# Renomear (F2)
+for_window [title="(?i).*renomear.*"] floating enable
+
+# Criar Arquivo/Pasta
+for_window [title="(?i).*criar.*"] floating enable
+for_window [title="(?i).*nome.*"] floating enable
+
+# Propriedades
+for_window [title="(?i).*propriedades.*"] floating enable
+
+# Confirmações e Erros
+for_window [title="(?i).*confirma.*"] floating enable
+for_window [title="(?i).*atenção.*"] floating enable
+for_window [title="(?i).*erro.*"] floating enable
+
+# Progresso (Copiando/Movendo)
+for_window [title="(?i).*progresso.*"] floating enable
+for_window [title="(?i).*operação.*"] floating enable
+for_window [title="(?i).*movendo.*"] floating enable
+for_window [title="(?i).*copiando.*"] floating enable
+for_window [title="(?i).*escrevendo.*"] floating enable
+
+# Ferramenta de Renomear em Massa (Bulk Rename)
+for_window [app_id="Thunar" title="Renomear múltiplos arquivos"] floating enable
+for_window [class="Thunar" title="Renomear múltiplos arquivos"] floating enable
