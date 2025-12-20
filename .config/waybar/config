@@ -1,170 +1,39 @@
-{
-    "layer": "top",
-    "position": "top",
-    "height": 0,
-    "spacing": 0,
-
-    /* --- LAYOUT GLOBAL --- */
-    "modules-left": ["custom/arch", "sway/window"],
-    "modules-center": [
-        "cpu",
-        "memory",
-        "temperature",
-        "disk",
-        "battery",
-        "custom/numlock",
-        "custom/capslock",
-        /*"custom/scrolllock",*/
-        "keyboard-state#caps",
-        "keyboard-state#scroll",
-        "clock", /* Center */
-        "network",
-        "pulseaudio",
-        "bluetooth",
-        "backlight",
-        "idle_inhibitor",
-        "custom/updates"
-    ],
-    "modules-right": ["sway/workspaces", "tray"],
-
-    /* --- MÓDULOS ESQUERDA --- */
-    "custom/arch": {
-        "format": "  ",
-        "tooltip": false,
-        "on-click": "fuzzel"
-    },
-
-    "sway/window": {
-        "format": "{title}",
-        "max-length": 40, /* Limita tamanho para não empurrar o centro */
-        "rewrite": {
-            "(.*) - Mozilla Firefox": "Firefox",
-            "(.*) - Neovim": "Neovim",
-            "(.*) - foot": "Terminal"
-        }
-    },
-
-    /* --- MÓDULOS DIREITA --- */
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "format": "{name}",
-        "persistent-workspaces": {
-            "1": [], "2": [], "3": [], "4": [], "5": [],
-            "6": [], "7": [], "8": [], "9": []
-        }
-    },
-
-    "tray": {
-        "icon-size": 16,
-        "spacing": 8
-    },
-
-    /* --- MÓDULOS CENTRAIS --- */
-    
-    /* 1. Hardware Básico */
-    "cpu": { "interval": 5, "format": " {usage}%" },
-    "memory": { "interval": 10, "format": " {percentage}%" },
-    "temperature": { "critical-threshold": 80, "format": " {temperatureC}°C" },
-    "disk": { "interval": 30, "format": " {percentage_used}%", "path": "/" },
-
-    /* 2. Energia (Condicional) */
-    "battery": {
-        "states": { "good": 95, "warning": 30, "critical": 15 },
-        "format": "{icon} {capacity}%",
-        "format-charging": " {capacity}%",
-        "format-plugged": " {capacity}%",
-        "format-icons": ["", "", "", "", ""]
-    },
-
-    /* 3. O CENTRO DO CENTRO (Relógio) */
-    "clock": {
-        "interval": 1,
-        "format": " {:%d/%m   %H:%M:%S}", /* Dia/Mes + H:M:S */
-        "tooltip-format": "<tt><small>{calendar}</small></tt>"
-    },
-
-    /* 4. Conectividade e Audio */
-    "network": {
-        "format-wifi": " {essid}.{signalStrength}.{frequency}", /* Wifi Nome */
-        "format-ethernet": " {ipaddr}", /* IP Ethernet */
-        "format-linked": " (No IP)",
-        "format-disconnected": "⚠ Off",
-        "tooltip-format": "{ifname} via {gwaddr}",
-        "max-length": 20
-    },
-
-    "pulseaudio": {
-        "format": "{icon}  {volume}%",
-        "format-bluetooth": "{icon} {volume}%",
-        "format-muted": " Muted",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", ""]
-        },
-        "on-click": "pavucontrol"
-    },
-
-    /* 5. Bluetooth (Encurtado) */
-    "bluetooth": {
-        "format": "", /* Só ícone quando idle */
-        "format-connected": " {device_alias}", /* Ícone + Nome curto */
-        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "max-length": 15
-    },
-
-    /* 6. Locks  */
-    /* --- LOCKS VIA SCRIPT (1 ou 0) --- */
-
-    "custom/numlock": {
-        "format": "{}",
-        "exec": "val=$(cat /sys/class/leds/input*::numlock/brightness 2>/dev/null | head -n1); if [ \"$val\" == \"1\" ]; then echo '{\"text\": \"\", \"class\": \"locked\"}'; else echo '{\"text\": \"\", \"class\": \"unlocked\"}'; fi",
-        "return-type": "json",
-        "interval": 1
-    },
-
-    "custom/capslock": {
-        "format": "{}",
-        "exec": "val=$(cat /sys/class/leds/input*::capslock/brightness 2>/dev/null | head -n1); if [ \"$val\" == \"1\" ]; then echo '{\"text\": \"󰪛\", \"class\": \"locked\"}'; else echo '{\"text\": \"󰪛\", \"class\": \"unlocked\"}'; fi",
-        "return-type": "json",
-        "interval": 1
-    },
-
-    "custom/scrolllock": {
-        "format": "{}",
-        "exec": "val=$(cat /sys/class/leds/input*::scrolllock/brightness 2>/dev/null | head -n1); if [ \"$val\" == \"1\" ]; then echo '{\"text\": \"󰇀\", \"class\": \"locked\"}'; else echo '{\"text\": \"S\", \"class\": \"unlocked\"}'; fi",
-        "return-type": "json",
-        "interval": 1
-    }, 
-
-    /* 7. Extras Finais */
-    "backlight": {
-        "device": "intel_backlight",
-        "format": "{icon} {percent}%",
-        "format-icons": ["", ""]
-    },
-
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "", 
-            "deactivated": ""
-        }
-    },
-
-    /* Script Híbrido: Pacman + Flatpak */
-    "custom/updates": {
-        "format": " {}",  /* Ícone de caixa simples + número */
-        "exec": "echo $(( $(checkupdates | wc -l) + $(flatpak remote-ls --updates | wc -l) ))",
-        "interval": 3600,
-        "on-click": "foot -e sh -c 'sudo pacman -Syu && flatpak update'"
-    },
-}
+[
+    {
+        "name": "bar_top",
+        "mode": "dock",
+        "position": "top",
+        "layer": "top",
+        "width": "",
+        "height": "",
+        "margin": "0",
+        "spacing": "0",
+        "fixed-center": "true",
+        "include": "~/.config/waybar/modules.json",
+        
+        "modules-left": [
+            "custom/space",
+            "custom/arch",
+            "tray",
+            "sway/window"
+        ],
+        "modules-center": [
+            "clock"
+            
+        ],
+        "modules-right": [
+            "mpd",
+            "custom/numlock",
+            "custom/capslock",
+            "idle_inhibitor",
+            "wireplumber",
+            "network",
+            "cpu",
+            "memory",
+            "disk",
+            "temperature",
+            "battery",
+            "custom/space"
+        ]
+    }
+]

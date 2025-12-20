@@ -12,16 +12,16 @@ set $tfiles yazi
 set $gfiles thunar
 
 # Paleta Gruvbox Material Hard (Warm)
-set $bg      #1d2021
-set $fg      #ebdbb2
-set $red     #cc241d
-set $green   #98971a
-set $yellow  #d79921
-set $blue    #458588
-set $purple  #b16286
-set $aqua    #689d6a
-set $gray    #a89984
-set $darkgray #282828
+set $bg         #1d2021
+set $fg         #ebdbb2
+set $red        #fb4934
+set $green      #98971a
+set $yellow     #d79921
+set $blue       #458588
+set $purple     #b16286
+set $aqua       #689d6a
+set $gray       #a89984
+set $darkgray   #282828
 
 # Garantir que os portais saibam que é um Wayland/Sway
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
@@ -60,18 +60,18 @@ bindsym $mod+F5 exec sh -c 'swaymsg output "*" bg "$(find ~/Imagens/wallpapers/ 
 # Smart Gaps:
 # - Se houver apenas 1 janela: Sem bordas, sem gaps (Foco total).
 # - Se houver >1 janela: Gaps aparecem para separar o conteúdo.
-gaps inner 5
-gaps outer 5
+gaps inner 4
+gaps outer 3
 smart_gaps on
 smart_borders on
 
 # Bordas Minimalistas
 default_border pixel 1
-default_floating_border pixel 1
+default_floating_border pixel 2
 
-# Cores das Janelas (Aplica a paleta definida acima)
+# Cores das Janelas
 # class                 border  backgr. text    indicator child_border
-client.focused          $yellow $yellow $bg     $yellow   $yellow
+client.focused          $green  $green  $bg     $green    $green
 client.focused_inactive $gray   $gray   $bg     $gray     $gray
 client.unfocused        $bg     $bg     $gray   $bg       $bg
 client.urgent           $red    $red    $fg     $red      $red
@@ -104,6 +104,8 @@ bindsym $mod+t exec $gfiles
 bindsym $mod+q kill
 bindsym $alt+F4 kill
 bindsym $mod+Shift+r reload
+bindsym $mod+m exec foot -a music_player -e ncmpcpp
+bindsym $mod+Escape exec swaylock -f -c 1d2021
 
 # --- Navegação (VIM Keys: h,j,k,l) ---
 bindsym $mod+h focus left
@@ -173,6 +175,11 @@ bindsym F12 move scratchpad
 # Traz a janela de volta (flutuando)
 bindsym $mod+F12 scratchpad show
 
+# --- Clipboard ---
+exec wl-paste -t text --watch clipman store --no-persist
+# Atalho para abrir o histórico no Fuzzel
+bindsym $mod+c exec clipman pick -t fuzzel
+
 # --- Screenshots (GRIM + SLURP) ---
 # Captura a tela inteira instantaneamente
 bindsym Print exec grim ~/Imagens/Screenshots/$(date +'%Y-%m-%d-%H%M%S.png')
@@ -182,8 +189,14 @@ bindsym $mod+Shift+s exec slurp | grim -g - - | wl-copy
 # Selecionar Área -> Salva na pasta
 bindsym Control+Print exec slurp | grim -g - ~/Imagens/Screenshots/$(date +'%Y-%m-%d-%H%M%S.png')
 
-# Loock
-bindsym $mod+Escape exec swaylock -f -c 1d2021
+# --- Gestão de Notificações (Mako) ---
+
+# Atalho Super+N: "Expande" a barra (Mostra notificações passadas/escondidas)
+bindsym $mod+n exec makoctl restore
+# Atalho Super+Shift+N: "Oculta" (Fecha tudo o que está na tela)
+bindsym $mod+Shift+n exec makoctl dismiss
+# Atalho Super+Control+N: Limpa tudo (Remove até do histórico)
+bindsym $mod+ctrl+n exec makoctl dismiss -a
 
 ### MODOS DE OPERAÇÃO (SAFETY & RESIZE) ###
 
@@ -228,17 +241,6 @@ bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-
-# --- REGRAS DE JANELA ---#
-# Define comportamento padrão para certos apps
-
-# Apps que sempre devem flutuar
-for_window [app_id="pavucontrol"] floating enable, resize set 600 400
-for_window [app_id="nm-connection-editor"] floating enable
-for_window [app_id="blueman-manager"] floating enable
-for_window [app_id="galculator"] floating enable
-for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30% 30%
-for_window [title="Picture-in-Picture"] floating enable, sticky enable
 
 # Inibir descanso de tela se estiver rodando vídeo em tela cheia (Firefox/MPV)
 for_window [class="^.*"] inhibit_idle fullscreen

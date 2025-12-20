@@ -1,133 +1,231 @@
-/* --- PALETA WARM (Anti-Blue Light) --- */
-@define-color cream   #ebdbb2;  /* Cor principal de leitura */
-@define-color yellow  #d79921;  /* Destaque principal */
-@define-color orange  #d65d0e;  /* Alertas suaves */
-@define-color red     #cc241d;  /* Erro/Crítico (tom terroso) */
-@define-color brown   #a89984;  /* Ícones inativos/secundários */
-@define-color green   #98971a;  /* Status OK (tom oliva) */
-@define-color dark    #1d2021;  /* Fundo da barra */
+@define-color bg-bar rgba(0, 0, 0, 0.3);
+@define-color bg-tooltip rgba(40, 40, 40, 0.9);
+@define-color text-main #ebdbb2;
+@define-color text-dim #a89984;
+
+@define-color green-main #b8bb26;
+@define-color green-dim #98971a;
+
+@define-color yellow-pastel #d79921;
+@define-color orange-pastel #fe8019;
+@define-color red-pastel #fb4934;
+@define-color purple-pastel #b16286;
+@define-color blue-pastel #83a598;
 
 * {
     border: none;
     border-radius: 0;
-    font-family: "JetBrainsMono Nerd Font";
+    font-family: "JetBrainsMono Nerd Font","Font Awesome 6 Free", "Font Awesome 6 Brands", monospace;
     font-size: 12px;
+    font-weight: bold;
     min-height: 0;
-}
-
-/* Barra: Fundo escuro quase transparente para o texto não sumir no wallpaper */
-window#waybar {
-    background-color: @dark; 
-    color: @cream;
-    border-bottom: 1px solid @brown; /* Linha muito sutil embaixo */
-}
-
-/* Reset Geral */
-button {
-    box-shadow: none;
-    text-shadow: none;
     padding: 0;
-    border-radius: 0;
-}
-
-/* --- MÓDULOS (Sem Backgrounds) --- */
-
-#custom-arch, #window, #workspaces, #tray,
-#cpu, #memory, #temperature, #disk, #battery,
-#clock, #network, #pulseaudio, #bluetooth,
-#keyboard-state, #backlight, #idle_inhibitor, #custom-updates {
-    background-color: transparent; /* AQUI ESTÁ A MÁGICA */
-    padding: 0 10px;
     margin: 0;
 }
 
-/* --- CORES DO TEXTO (Tons Quentes) --- */
+window#waybar.bar_top {
+    background: @bg-bar;
+    color: @text-main;
+}
 
-/* Esquerda */
+tooltip {
+    background: @bg-tooltip;
+    border: 1px solid @green-main;
+    border-radius: 8px;
+}
+
+tooltip label {
+    color: @text-main;
+    font-size: 14px;
+    padding: 8px;
+}
+
+#custom-arch,
+#workspaces,
+#window,
+#clock,
+#tray,
+#backlight,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#network,
+#pulseaudio,
+#wireplumber,
+#idle_inhibitor,
+#mpris,
+#mpd,
+#custom-numlock,
+#custom-capslock,
+#user {
+    background-color: transparent;
+    color: @text-main;
+    padding: 2px 6px;
+    margin: 0 2px;
+    border-top: 2px solid @text-dim;
+    min-width: 0;
+    box-shadow: none;
+    transition: border-color 0.3s ease;
+}
+
 #custom-arch {
-    color: @yellow;     /* Logo em amarelo */
-    font-size: 18px;
-    padding-left: 15px;
+    color: @blue-pastel;
+    border-color: @blue-pastel;
+}
+
+#workspaces button {
+    padding: 0 4px;
+    margin: 0;
+    color: @text-dim;
+    background: transparent;
+    border-top: 2px solid transparent;
+}
+
+#workspaces button.focused {
+    color: @text-main;
+    border-color: @green-main;
+}
+
+#workspaces button.urgent {
+    color: @text-main;
+    border-color: @red-pastel;
 }
 
 #window {
-    color: @cream;
-    font-weight: bold;
+    border-color: @text-dim;
 }
 
-/* Workspaces */
-#workspaces button {
-    color: @brown;      /* Inativos ficam "apagados" */
-}
-#workspaces button.focused {
-    color: @orange;     /* Ativo brilha em laranja */
-    box-shadow: inset 0 -2px @orange; /* Linha fina embaixo do ativo */
-}
-
-/* Centro (Hardware) */
-#cpu            { color: @cream; }
-#memory         { color: @cream; }
-#temperature    { color: @orange; } /* Temp alta chama atenção */
-#disk           { color: @brown; }
-#battery        { color: @green; }
-
-/* Centro (Relógio - Destaque) */
 #clock {
-    color: @yellow;
-    font-weight: bold;
+    border-color: @green-dim;
 }
 
-/* Centro (Rede/Audio) */
-#network        { color: @cream; }
-#network.disconnected { color: @red; }
-
-#pulseaudio     { color: @cream; }
-#pulseaudio.muted { color: @brown; }
-
-#bluetooth      { color: @cream; }
-#backlight      { color: @yellow; }
-
-/* --- LOCKS --- */
-
-/* Configuração Geral dos 3 módulos */
-#custom-numlock, 
-#custom-capslock, 
-#custom-scrolllock {
-    background: transparent;
-    padding: 0 5px;
-    font-weight: 900;
-    font-size: 14px;
-    transition: color 0.2s ease;
+#network {
+    border-color: @green-main;
 }
 
-/* ESTADO 1: LIGADO (Locked) -> Cinza (Neutro) */
-#custom-numlock.locked, 
-#custom-capslock.locked, 
-#custom-scrolllock.locked {
-    color: #a89984; /* @gray */
+#network.disconnected {
+    border-color: @text-dim;
 }
 
-/* ESTADO 0: DESLIGADO (Unlocked) -> Vermelho (Alerta) */
-#custom-numlock.unlocked, 
-#custom-capslock.unlocked, 
-#custom-scrolllock.unlocked {
-    color: #cc241d; /* @red */
+#pulseaudio,
+#wireplumber {
+    border-color: @green-main;
 }
 
-/* Update Icon */
-#custom-updates {
-    color: @orange; /* Destaca que tem coisa pra fazer */
+#pulseaudio.muted,
+#wireplumber.muted {
+    border-color: @text-dim;
+    color: @text-dim;
 }
 
-/* Idle Inhibitor */
-#idle_inhibitor.activated { color: @red; }
-#idle_inhibitor.deactivated { color: @brown; }
-
-/* Tray */
-#tray > .passive {
-    -gtk-icon-effect: dim;
+#wireplumber.medium {
+    border-color: @yellow-pastel;
 }
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: transparent;
+
+#wireplumber.high {
+    border-color: @red-pastel;
+}
+
+#cpu {
+    border-color: @green-main;
+}
+
+#cpu.warning {
+    border-color: @yellow-pastel;
+}
+
+#cpu.critical {
+    border-color: @red-pastel;
+}
+
+#memory {
+    border-color: @purple-pastel;
+}
+
+#disk {
+    border-color: @blue-pastel;
+}
+
+#temperature {
+    border-color: @green-main;
+}
+
+#temperature.critical {
+    border-color: @red-pastel;
+}
+
+#battery {
+    border-color: @text-dim;
+}
+
+#battery.charging {
+    border-color: @green-main;
+}
+
+#battery.warning:not(.charging) {
+    border-color: @yellow-pastel;
+}
+
+#battery.critical:not(.charging) {
+    border-color: @red-pastel;
+    color: @red-pastel;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-iteration-count: infinite;
+}
+
+#idle_inhibitor {
+    border-color: @text-dim;
+}
+
+#idle_inhibitor.activated {
+    border-color: @green-main;
+}
+
+#mpd {
+    color: @text-main;
+    border-color: @green-main;
+    padding: 0px 5px;
+    margin: 0 2px;
+    transition: border-color 0.3s ease;
+}
+
+#mpd.disconnected {
+    color: @text-dim;
+    border-color: @red-pastel;
+}
+
+#mpd.stopped,
+#mpd.paused {
+    color: @text-dim;
+    border-color: @text-dim;
+}
+
+#mpris {
+    border-color: @green-main;
+    padding: 2px 10px;
+}
+
+#mpris.paused {
+    border-color: @text-dim;
+    color: @text-dim;
+}
+
+#custom-numlock,
+#custom-capslock {
+    border-color: @text-dim;
+}
+
+#custom-numlock.locked,
+#custom-capslock.locked {
+    border-color: @green-main;
+}
+
+@keyframes blink {
+    to {
+        color: #ffffff;
+        border-color: #ffffff;
+    }
 }

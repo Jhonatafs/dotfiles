@@ -1,0 +1,254 @@
+{
+    "backlight": {}, //Testar em Notebooks
+    "backlight/slider": {}, //Testar em Notebooks
+    "battery": {}, //Testar em Notebooks
+
+    "bluetooth": {
+        "format": "", 
+        "format-no-controller": "󰂲", 
+        "format-off": "󰂲",
+        "format-on": "󰂰",
+        "format-connected": "󰂱",
+        "tooltip": true,
+        "tooltip-format-off": "Bluetooth: Desligado",
+        "tooltip-format-on": "Bluetooth: Ligado | Nenhum dispositivo conectado",
+        "tooltip-format-connected": "Status: {status}\nConexões: {num_connections}\nAlias: {device_alias}",
+        "on-click": "blueman-manager"
+    },
+
+    "clock": {
+        "interval": 1,
+        "locale": "pt_BR.UTF-8", 
+        "format": " {:%a, %d %b  %H:%M:%S}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode": "year",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months":     "<span color='#83a598'><b>{}</b></span>",   // Blue Pastel
+                "days":       "<span color='#ebdbb2'>{}</span>",         // Text Main
+                "weeks":      "<span color='#b16286'>W{}</span>",        // Purple Pastel
+                "weekdays":   "<span color='#d79921'><b>{}</b></span>",   // Yellow Pastel
+                "today":      "<span color='#b8bb26'><b><u>{}</u></b></span>" // Green Main (Destaque)
+            }
+        },
+        "actions": {
+            "on-click": "mode",
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+    "cpu": {
+        "interval": 1,
+        "format": "{icon} {usage}%",
+        "format-icons": [""],
+        "states": {
+            "warning": 50,
+            "critical": 85
+        },
+        "tooltip": true,
+        "align": 0
+    },
+
+    "custom/arch": {
+        "format": "  ",
+        "tooltip": false
+    },
+
+    "custom/numlock": {
+        "format": "{}",
+        "exec": "val=$(cat /sys/class/leds/input*::numlock/brightness 2>/dev/null | head -n1); if [ \"$val\" == \"1\" ]; then echo '{\"text\": \"\", \"class\": \"locked\"}'; else echo '{\"text\": \"\", \"class\": \"unlocked\"}'; fi",
+        "return-type": "json",
+        "interval": 1
+    },
+
+    "custom/capslock": {
+        "format": "{}",
+        "exec": "val=$(cat /sys/class/leds/input*::capslock/brightness 2>/dev/null | head -n1); if [ \"$val\" == \"1\" ]; then echo '{\"text\": \"󰪛\", \"class\": \"locked\"}'; else echo '{\"text\": \"\", \"class\": \"unlocked\"}'; fi",
+        "return-type": "json",
+        "interval": 1
+    },
+
+    "custom/space": {
+        "format": " "
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": " {percentage_used}%",
+        "path": "/"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": "󰒲"
+        }
+    },
+
+    "keyboard-state": {
+        "numlock": true,
+        "capslock": true,
+        "format": "{name} {icon}",
+        "format-icons": {
+            "locked": "",
+            "unlocked": ""
+        }
+    },
+
+    "memory": {
+        "interval": 1,
+        "format": " {percentage}%"
+    },
+
+    "mpd": {
+        "interval": 2,
+        "format": "{stateIcon} {title} - {artist}",
+        "format-disconnected": " Desconectado",
+        "format-stopped": " Parado",
+        "consume-icons": { "on": " " },
+        "random-icons": { "off": "<span color=\"#fb4934\"></span> ", "on": " " },
+        "repeat-icons": { "on": " " },
+        "single-icons": { "on": "1 " },
+        "state-icons": {
+            "paused": "",
+            "playing": ""
+        },
+        "tooltip-format": "MPD (Conectado)\nÁlbum: {album}\nTempo: {elapsedTime:%M:%S} / {totalTime:%M:%S}\nVolume MPD: {volume}%",
+        "tooltip-format-disconnected": "MPD (Desconectado)",
+        
+        // --- CONTROLES ---
+        "on-click": "mpc toggle",                 // Esquerdo: Play/Pause
+        "on-click-right": "mpc next",             // Direito: Próxima Música
+        "on-click-middle": "mpc prev",            // Meio: Música Anterior
+        "on-scroll-up": "mpc volume +5",          // Rolar Cima: Aumenta volume SÓ da música
+        "on-scroll-down": "mpc volume -5",        // Rolar Baixo: Abaixa volume SÓ da música
+        
+        // --- GUI / TERMINAL ---
+        // Ajuste "kitty -e ncmpcpp" para o seu terminal preferido
+        "on-double-click": "kitty -e ncmpcpp" 
+    },
+
+    "mpris": {
+        "format": "{player_icon} {artist}",
+        "format-paused": "{status_icon} <i>{artist}</i>",
+        "tooltip-format": "{player_icon} {dynamic}",
+        "player-icons": {
+            "default": "▶",
+            "mpd": "",
+            "firefox": "",
+            "chromium": "",
+            "spotify": ""
+        },
+        "status-icons": {
+            "paused": "⏸"
+        },
+        "ignored-players": ["vlc", "obs"],
+        "max-length": 150,
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next",
+        "on-click-middle": "playerctl previous",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+    },
+
+    "network": {            
+        "interval": 1,
+        "family": "ipv4",
+        "format": "{ifname}", 
+        "format-ethernet": "󰈀",
+        "format-wifi": "{icon} {essid} ({signalStrength}%)", 
+        "format-linked": " {ifname} (Sem IP)",
+        "format-disconnected": "󰌙",
+        "format-disabled": "Hosts desativado",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "format-icons": ["󰤯", "󰤟", "󰤢", "󰤥", "󰤨"],
+        "max-length": 50,
+        "tooltip": true,
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "tooltip-format-ethernet": "  {ifname}\nIP: {ipaddr}\nUp: {bandwidthUpBits} | Down: {bandwidthDownBits}",
+        "tooltip-format-wifi": "  {essid} ({frequency}GHz)\nForça: {signaldBm}dBm\nIP: {ipaddr}",
+        "tooltip-format-disconnected": "Desconectado",
+        "tooltip-format-disabled": "Interface Desativada"
+    },
+
+    "pulseaudio": {
+        "format": "{icon}",
+        "format-muted": " Muted",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "󰋎",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "sway/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate",
+        "format-icons": {
+          "1": "",
+          "2": "",
+          "3": "",
+          "4": "",
+          "5": "",
+          "urgent": "",
+          "active": "",
+          "default": ""
+        },
+        "sort-by-number": true
+    },
+
+    "sway/window": {
+        "format": "{title}",
+        "max-length": 50,
+        "all-outputs" : true,
+        "offscreen-css" : true,
+        "offscreen-css-text": "(inactive)",
+        "rewrite": {
+           "(.*) Mozilla Firefox": " $1",
+           "(.*) Brave": " $1",
+           "(.*) nvim": " $1",
+           "foot": "  $1"
+        }
+    },
+
+    "systemd-failed-units": {
+        "hide-on-ok": false,
+        "format": "✗ {nr_failed}",
+        "format-ok": "",
+        "system": true,
+        "user": true
+    },
+
+    "temperature": { 
+        "critical-threshold": 80,
+        "format": " {temperatureC}°C"
+    },
+
+    "tray": {
+        "icon-size": 16,
+        "spacing": 8
+    },
+
+    "wireplumber": {
+        "format": "{icon} {volume}%",
+        "format-muted": " Muted",
+        "on-click": "pavucontrol",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "scroll-step": 1.0,
+        "max-volume": 100.0,
+        "format-icons": ["", "", ""],
+        "states": {
+            "medium": 50,
+            "high": 70
+        }
+    }
+}
