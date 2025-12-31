@@ -22,5 +22,12 @@
   "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
   "editor.lineNumbers": "relative",
   "editor.cursorBlinking": "expand",
-  "editor.cursorSmoothCaretAnimation": "on"
+  "editor.cursorSmoothCaretAnimation": "on",
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "svelte.enable-ts-plugin": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

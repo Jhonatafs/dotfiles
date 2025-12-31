@@ -128,8 +128,8 @@
         "on-scroll-down": "mpc volume -5",        // Rolar Baixo: Abaixa volume SÓ da música
         
         // --- GUI / TERMINAL ---
-        // Ajuste "kitty -e ncmpcpp" para o seu terminal preferido
-        "on-double-click": "kitty -e ncmpcpp" 
+        // Ajuste "foot -e ncmpcpp" para o seu terminal preferido
+        "on-double-click": "foot -e ncmpcpp" 
     },
 
     "mpris": {

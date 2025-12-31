@@ -13,13 +13,14 @@
 	<directories/>
 </action>
 <action>
-	<icon></icon>
-	<name></name>
+	<icon>application-x-iso</icon>
+	<name>Montar ISO</name>
 	<submenu></submenu>
-	<unique-id>1765412474405914-1</unique-id>
-	<command></command>
+	<unique-id>1766444909383472-1</unique-id>
+	<command>udisksctl loop-setup -f %f</command>
 	<description></description>
 	<range>*</range>
-	<patterns>*</patterns>
+	<patterns>*.iso;*.ISO</patterns>
+	<other-files/>
 </action>
 </actions>

@@ -89,6 +89,9 @@ exec swayidle -w \
     timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
     before-sleep 'swaylock -f -c 1d2021'
 
+# MPD
+exec mpc single off && mpc repeat on
+
 ### INPUT
 # Habilitar NumLock por padrão na inicialização
 input type:keyboard xkb_numlock enabled

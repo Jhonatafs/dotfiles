@@ -1,3 +1,6 @@
+anseki.vscode-color
+bracketpaircolordlw.bracket-pair-color-dlw
+davidanson.vscode-markdownlint
 drakenlords.gruvbox-draken-lords
 esbenp.prettier-vscode
 jdinhlife.gruvbox
@@ -5,4 +8,7 @@ jonathanharty.gruvbox-material-icon-theme
 ms-ceintl.vscode-language-pack-pt-br
 naumovs.color-highlight
 oderwat.indent-rainbow
+svelte.svelte-vscode
+tomoki1207.pdf
 yandeu.five-server
+yzhang.markdown-all-in-one
