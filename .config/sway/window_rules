@@ -49,6 +49,8 @@ for_window [app_id="Thunar" title="(?i).*operação.*"] floating enable
 for_window [app_id="Thunar" title="(?i).*movendo.*"] floating enable
 for_window [app_id="Thunar" title="(?i).*copiando.*"] floating enable
 for_window [app_id="Thunar" title="(?i).*escrevendo.*"] floating enable
+for_window [app_id="Thunar" title="(?i).*andamento.*"] floating enable
+
 
 # Ferramenta de Renomear em Massa
 for_window [app_id="Thunar" title="Renomear múltiplos arquivos"] floating enable
